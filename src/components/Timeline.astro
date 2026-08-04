@@ -34,6 +34,22 @@ import { site } from '../data/site';
     margin: 3rem 0 0;
     padding: 0;
     border-left: 1px solid var(--border);
+    position: relative;
+  }
+
+  .milestones::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 0;
+    width: 2px;
+    height: 0;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    transition: height 1.2s var(--ease);
+  }
+
+  .milestones.is-drawn::before {
+    height: 100%;
   }
 
   .milestone {
@@ -53,6 +69,17 @@ import { site } from '../data/site';
     border-radius: 50%;
     background: var(--accent);
     box-shadow: 0 0 0 4px var(--accent-soft);
+    transform: scale(0.6);
+    opacity: 0.45;
+    transition:
+      transform 0.45s var(--ease),
+      opacity 0.45s var(--ease);
+  }
+
+  .milestone.is-visible::before,
+  .milestone.reveal.is-visible::before {
+    transform: scale(1);
+    opacity: 1;
   }
 
   .milestone-year {
@@ -84,3 +111,23 @@ import { site } from '../data/site';
     }
   }
 </style>
+
+<script>
+  const milestones = document.querySelector('.milestones');
+  if (milestones && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            milestones.classList.add('is-drawn');
+            observer.disconnect();
+          }
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(milestones);
+  } else if (milestones) {
+    milestones.classList.add('is-drawn');
+  }
+</script>
