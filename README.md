@@ -33,16 +33,17 @@ npm run preview
 
 ## Fotos (`public/images/`)
 
-Hoje os três arquivos ainda são o **mesmo placeholder** (avatar do GitHub). Substitua pelos arquivos reais mantendo os nomes:
+| Arquivo | Uso |
+| --- | --- |
+| `thiago-hero.jpg` | Hero |
+| `thiago-about.jpg` | Sobre (retrato) |
+| `thiago-familia.jpg` | Sobre (família) |
+| `projects/perfil-id.jpg` | Projeto perfil.id |
+| `projects/catiteo.jpg` | Projeto Catiteo |
+| `projects/azen.jpg` | Projeto AZEN CO. |
+| `projects/imav.jpg` | Projeto Instituto IMAV |
 
-| Arquivo | Uso | Qual foto enviar |
-| --- | --- | --- |
-| `thiago-hero.jpg` | Hero (fundo) | Retrato principal (estúdio com luz quente **ou** blazer/fundo natural) |
-| `thiago-about.jpg` | Sobre (retrato) | Blazer profissional (se o hero for o de estúdio) |
-| `thiago-familia.jpg` | Sobre (família) | Foto do casamento com Thais Mara |
-| — | Não usar no v1 | Selfie da praia (sem camisa) |
-
-Como enviar: arraste os 3 arquivos nesta conversa **ou** faça commit direto em `public/images/` na `main`.
+Ideal dos prints de projeto: **largura ≥ 1200px**, proporção **16:10**, topo da página visível. Substitua o arquivo mantendo o **mesmo nome**.
 
 ## Publicação (`thiago.catiteo.com`)
 
