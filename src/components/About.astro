@@ -43,11 +43,8 @@ const { content } = Astro.props;
         <summary>{content.about.readMore}</summary>
         <div class="about-extra">
           {
-            content.about.paragraphsHtml.map((html, index) => (
-              <p
-                class={index < 4 ? `reveal-delay-${index + 1}` : ''}
-                set:html={html}
-              />
+            content.about.paragraphsHtml.map((html) => (
+              <p set:html={html} />
             ))
           }
         </div>
