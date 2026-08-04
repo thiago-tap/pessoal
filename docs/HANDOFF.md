@@ -99,12 +99,10 @@ DNS já configurado: `thiago.catiteo.com` → CNAME → `thiago-tap.github.io`.
 
 ### Prioridade alta
 
-1. **Logo completa do IMAV**  
-   Hoje está só o símbolo circular (fica pequeno ao lado das wordmarks).  
-   Quando tiver PNG/SVG com texto “Instituto IMAV” (fundo transparente):
-   - substituir `public/images/projects/logos/imav.png`
-   - manter o mesmo nome de arquivo **ou** atualizar o path em `src/data/site.ts`
-   - commit + push em `main`
+1. **Logo completa do IMAV (wordmark com texto)** — opcional  
+   O arquivo atual (`NOVA-LOGO-IMAV.png`) é só o **símbolo circular**.  
+   Já aumentamos a escala no CSS (`logoVariant: 'mark'`) para empatar visualmente com as outras.  
+   Se aparecer uma versão com o texto “Instituto IMAV”, substitua `public/images/projects/logos/imav.png` e mude `logoVariant` para `'wide'` em `src/data/site.ts`.
 
 ### Próximas melhorias (não bloqueantes)
 
