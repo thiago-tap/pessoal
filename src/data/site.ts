@@ -13,6 +13,7 @@ export const site = {
     'Full-stack em Brasília. Sistemas que não podem falhar no trabalho; produtos próprios com propósito — e uma vida ancorada em Deus e na família.',
   photos: {
     hero: '/images/thiago-hero.jpg',
+    heroDesktop: '/images/thiago-hero-desktop.jpg',
     about: '/images/thiago-about.jpg',
     family: '/images/thiago-familia.jpg',
   },
