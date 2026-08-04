@@ -11,16 +11,21 @@ export const site = {
   tagline: 'Desenvolvedor Full-Stack · Games & tech · Cristão · Família',
   heroSupport:
     'Full-stack em Brasília. Sistemas críticos no dia a dia, produtos próprios com propósito — e uma vida ancorada em Deus e na família.',
-  portrait: '/images/thiago-hero.jpg',
   photos: {
     hero: '/images/thiago-hero.jpg',
     about: '/images/thiago-about.jpg',
     family: '/images/thiago-familia.jpg',
   },
   social: {
+    /** CTA do hero / redes em geral */
     primary: {
       label: 'Instagram',
       href: 'https://www.instagram.com/thiagaotap/',
+    },
+    /** CTA da seção Contato — conversa direta */
+    contact: {
+      label: 'WhatsApp',
+      href: 'https://wa.me/5561992401116?text=Ol%C3%A1%20Thiago!%20Vi%20seu%20site%20e%20gostaria%20de%20conversar.',
     },
     links: [
       {

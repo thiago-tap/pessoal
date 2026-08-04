@@ -39,9 +39,9 @@ html[data-theme='light'] {
   --shadow: 0 24px 60px rgba(55, 40, 10, 0.12);
   --hero-overlay: linear-gradient(
     105deg,
-    rgba(247, 242, 234, 0.94) 0%,
-    rgba(247, 242, 234, 0.82) 45%,
-    rgba(247, 242, 234, 0.28) 100%
+    rgba(247, 242, 234, 0.88) 0%,
+    rgba(247, 242, 234, 0.62) 48%,
+    rgba(247, 242, 234, 0.18) 100%
   );
 }
 

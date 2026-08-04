@@ -8,14 +8,17 @@ import SocialLinks from './SocialLinks.astro';
     <p class="section-label">Contato</p>
     <h2 class="section-title">Vamos conversar</h2>
     <p class="section-lead">
-      Instagram é o caminho principal — as outras redes estão a um clique.
+      Prefere conversar direto? Chama no WhatsApp — as outras redes estão a um clique.
     </p>
 
     <div class="contact-actions">
-      <a class="btn-primary" href={site.social.primary.href} target="_blank" rel="noopener noreferrer">
-        Abrir Instagram
+      <a class="btn-primary" href={site.social.contact.href} target="_blank" rel="noopener noreferrer">
+        Conversar no WhatsApp
       </a>
-      <a class="btn-ghost" href={`mailto:${site.email}`}>Enviar e-mail</a>
+      <a class="btn-ghost" href={site.social.primary.href} target="_blank" rel="noopener noreferrer">
+        Instagram
+      </a>
+      <a class="btn-ghost" href={`mailto:${site.email}`}>E-mail</a>
     </div>
 
     <SocialLinks links={site.social.links} className="contact-socials" />

@@ -33,14 +33,16 @@ npm run preview
 
 ## Fotos (`public/images/`)
 
-| Arquivo | Uso | Qual foto usar |
-| --- | --- | --- |
-| `thiago-hero.jpg` | Hero (fundo full-bleed) | Retrato profissional (blazer / fundo natural) — a mais “premium” |
-| `thiago-about.jpg` | Sobre (retrato) | Mesma do hero **ou** a de viagem (jaqueta), **após corrigir a rotação** |
-| `thiago-familia.jpg` | Sobre (família) | Foto do casamento com Thais Mara |
-| — | Não usar no v1 | Selfie da praia (sem camisa) — demais casual para a primeira dobra profissional |
+Hoje os três arquivos ainda são o **mesmo placeholder** (avatar do GitHub). Substitua pelos arquivos reais mantendo os nomes:
 
-Substitua os arquivos mantendo os **mesmos nomes**. Rebuild/deploy automático no push em `main`.
+| Arquivo | Uso | Qual foto enviar |
+| --- | --- | --- |
+| `thiago-hero.jpg` | Hero (fundo) | Retrato principal (estúdio com luz quente **ou** blazer/fundo natural) |
+| `thiago-about.jpg` | Sobre (retrato) | Blazer profissional (se o hero for o de estúdio) |
+| `thiago-familia.jpg` | Sobre (família) | Foto do casamento com Thais Mara |
+| — | Não usar no v1 | Selfie da praia (sem camisa) |
+
+Como enviar: arraste os 3 arquivos nesta conversa **ou** faça commit direto em `public/images/` na `main`.
 
 ## Publicação (`thiago.catiteo.com`)
 
