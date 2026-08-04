@@ -80,7 +80,7 @@ export const site = {
     {
       year: 'Paralelo',
       title: 'Negócios próprios',
-      detail: 'AZEN CO., Catiteo, perfil.id e sites para clientes — produto real ponta a ponta.',
+      detail: 'AZEN CO., Catiteo, Perfil.id e sites para clientes — produto real ponta a ponta.',
     },
     {
       year: '2022',
@@ -97,7 +97,7 @@ export const site = {
   ],
   projects: [
     {
-      name: 'perfil.id',
+      name: 'Perfil.id',
       description:
         'Perfis na internet mais profissionais (e menos genéricos) para pessoas e pequenos negócios — com qualidade de produto e preço acessível.',
       href: 'https://perfil.id/',
