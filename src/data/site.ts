@@ -102,6 +102,7 @@ export const site = {
         'Perfis na internet mais profissionais (e menos genéricos) para pessoas e pequenos negócios — com qualidade de produto e preço acessível.',
       href: 'https://perfil.id/',
       image: '/images/projects/logos/perfil-id.svg',
+      logoVariant: 'wide' as const,
     },
     {
       name: 'Catiteo',
@@ -109,6 +110,7 @@ export const site = {
         'Serviço de extrema qualidade para quem quer algo a mais na internet: sites complexos e sistemas sob medida.',
       href: 'https://catiteo.com/',
       image: '/images/projects/logos/catiteo.png',
+      logoVariant: 'wide' as const,
     },
     {
       name: 'AZEN CO.',
@@ -116,6 +118,7 @@ export const site = {
         'Marca de roupa com propósito: identidade, intenção e fé — minimalismo e autenticidade num mundo de ruído.',
       href: 'https://www.azenco.com.br/',
       image: '/images/projects/logos/azen.png',
+      logoVariant: 'wide' as const,
     },
     {
       name: 'Instituto IMAV',
@@ -123,6 +126,8 @@ export const site = {
         'Presença digital institucional com visual cuidado e foco em clareza — um dos trabalhos entregues para cliente.',
       href: 'https://institutoimav.com.br/',
       image: '/images/projects/logos/imav.png',
+      /** Marca quadrada: precisa de escala maior para empatar com as wordmarks */
+      logoVariant: 'mark' as const,
     },
   ],
   stack: {

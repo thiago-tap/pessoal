@@ -23,7 +23,7 @@ import { site } from '../data/site';
           >
             <div class="project-media">
               <img
-                class="project-logo"
+                class={`project-logo project-logo--${project.logoVariant}`}
                 src={project.image}
                 alt={`Logo ${project.name}`}
                 loading="lazy"
@@ -94,11 +94,21 @@ import { site } from '../data/site';
   }
 
   .project-logo {
-    width: min(72%, 15rem);
-    max-height: 4.25rem;
     height: auto;
     object-fit: contain;
     transition: transform 0.55s var(--ease);
+  }
+
+  .project-logo--wide {
+    width: min(72%, 15rem);
+    max-height: 4.25rem;
+  }
+
+  /* Marcas quadradas (IMAV): escala maior para o mesmo peso visual das wordmarks */
+  .project-logo--mark {
+    width: auto;
+    max-width: min(58%, 7.75rem);
+    max-height: 7.25rem;
   }
 
   .project:hover .project-logo {
