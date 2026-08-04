@@ -1,0 +1,77 @@
+---
+import { site } from '../data/site';
+
+const groups = [
+  { title: 'Backend', items: site.stack.backend },
+  { title: 'Frontend', items: site.stack.frontend },
+  { title: 'Qualidade & entrega', items: site.stack.quality },
+  { title: 'Também', items: site.stack.also },
+];
+---
+
+<section class="section stack" id="stack">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Stack</p>
+      <h2 class="section-title">Ferramentas que uso de verdade</h2>
+      <p class="section-lead">Curada — sem barras de progresso, sem inventário infinito.</p>
+    </div>
+
+    <div class="stack-grid">
+      {
+        groups.map((group, index) => (
+          <div class={`stack-group reveal reveal-delay-${(index % 4) + 1}`}>
+            <h3>{group.title}</h3>
+            <ul>
+              {group.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .stack-group h3 {
+    margin: 0 0 1rem;
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .stack-group ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .stack-group li {
+    padding: 0.55rem 0.85rem;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    color: var(--text);
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  @media (min-width: 800px) {
+    .stack-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 2.5rem;
+    }
+  }
+</style>

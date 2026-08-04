@@ -1,0 +1,114 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="section about" id="sobre">
+  <div class="container about-grid">
+    <div class="about-intro reveal">
+      <p class="section-label">Sobre</p>
+      <h2 class="section-title">Quem sou eu</h2>
+      <p class="section-lead">
+        Desenvolvedor full-stack, marido, cristão e nerd de games — construindo com propósito.
+      </p>
+    </div>
+
+    <div class="about-copy">
+      <p class="reveal reveal-delay-1">
+        Sou <strong>{site.fullName}</strong>, tenho
+        <strong><span data-age>{/* filled by script */}</span> anos</strong>, vivo em
+        <strong>{site.location}</strong> e trabalho como desenvolvedor full-stack. Sou casado com
+        <strong>Thais Mara</strong> e coloco <strong>Deus e a família</strong> no centro da minha
+        vida. O que construo — no código e fora dele — precisa fazer sentido com quem eu sou em
+        casa: alguém presente, responsável e alinhado com o que acredita.
+      </p>
+      <p class="reveal reveal-delay-2">
+        Sou cristão, com fé em Deus e uma paixão genuína por <strong>Jesus Cristo</strong>. Tento
+        ser uma pessoa melhor a cada dia, com a ajuda Dele — mais íntegro, mais paciente, mais útil
+        às pessoas ao meu redor. Essa busca não fica separada do trabalho: molda como eu encarо
+        prazos, qualidade, segurança e o impacto do que entrego. Tecnologia, para mim, não é só
+        carreira; é também um jeito de servir.
+      </p>
+      <p class="reveal reveal-delay-3">
+        Tecnologia me move desde cedo. Gosto de entender sistemas de ponta a ponta, modernizar
+        legados, cuidar de performance e criar interfaces que as pessoas realmente conseguem usar.
+        Em paralelo, sou nerd de carteirinha: tenho coleção de <strong>jogos de tabuleiro</strong> e
+        também curto <strong>games digitais</strong>. Jogar é lazer, criatividade e convivência — a
+        mesma curiosidade que levo para o desenvolvimento quando exploro stacks novas, ferramentas
+        e ideias de produto.
+      </p>
+      <p class="reveal reveal-delay-4">
+        Profissionalmente, atuo em ambientes de <strong>alta criticidade</strong>. Hoje, na
+        <strong>Minsait/Indra</strong>, participo de projetos corporativos de grande porte,
+        desenvolvendo e mantendo aplicações e APIs em que estabilidade, segurança e qualidade de
+        código não são “nice to have”: são o trabalho. Unir backend robusto (Java, Quarkus, Spring)
+        e frontend cuidadoso (Angular e o ecossistema web) é o que faço no dia a dia — com testes,
+        boas práticas e mindset de evolução contínua.
+      </p>
+      <p class="reveal">
+        Fora do expediente, construo e cuido de projetos próprios. O <strong>perfil.id</strong>
+        nasceu para que pessoas e pequenos empresários pudessem criar um perfil na internet de forma
+        mais profissional — e menos genérica do que muitas ferramentas do mercado — unindo
+        profissionalismo e <strong>preço acessível</strong>. A <strong>Catiteo</strong> existe para
+        oferecer um serviço de extrema qualidade a pessoas e empresas que querem algo a mais na
+        internet: sites complexos e sistemas sob medida. A <strong>AZEN CO.</strong> — minha marca
+        de roupa — nasce com propósito: não só peças, mas identidade, direção e significado.
+        Minimalismo, autenticidade e fé; menos excesso, mais verdade.
+      </p>
+      <p class="reveal">
+        No fim, o que me interessa não é só “mais uma stack” ou um site bonito por ser bonito. É
+        usar o que sei de tecnologia para resolver problemas reais, com design bem feito, código
+        responsável e um propósito maior do que o deploy: <strong>servir pessoas</strong>, crescer
+        com a família e viver a fé no cotidiano.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ birthDate: site.birthDate }}>
+  function calcAge(isoDate) {
+    const birth = new Date(`${isoDate}T00:00:00`);
+    const now = new Date();
+    let age = now.getFullYear() - birth.getFullYear();
+    const month = now.getMonth() - birth.getMonth();
+    if (month < 0 || (month === 0 && now.getDate() < birth.getDate())) {
+      age -= 1;
+    }
+    return age;
+  }
+
+  const age = String(calcAge(birthDate));
+  document.querySelectorAll('[data-age]').forEach((el) => {
+    el.textContent = age;
+  });
+</script>
+
+<style>
+  .about-grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .about-copy {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 48rem;
+  }
+
+  .about-copy p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+
+  .about-copy strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  @media (min-width: 900px) {
+    .about-grid {
+      grid-template-columns: minmax(14rem, 0.9fr) 1.4fr;
+      align-items: start;
+    }
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+import { site } from '../data/site';
+import SocialLinks from './SocialLinks.astro';
+---
+
+<section class="section contact" id="contato">
+  <div class="container contact-panel reveal">
+    <p class="section-label">Contato</p>
+    <h2 class="section-title">Vamos conversar</h2>
+    <p class="section-lead">
+      Instagram é o caminho principal — as outras redes estão a um clique.
+    </p>
+
+    <div class="contact-actions">
+      <a class="btn-primary" href={site.social.primary.href} target="_blank" rel="noopener noreferrer">
+        Abrir Instagram
+      </a>
+      <a class="btn-ghost" href={`mailto:${site.email}`}>Enviar e-mail</a>
+    </div>
+
+    <SocialLinks links={site.social.links} className="contact-socials" />
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>
+      <span class="footer-brand">Thiago Albuquerque de Paula</span>
+      <span aria-hidden="true"> · </span>
+      {site.location}
+    </p>
+    <p class="footer-note">© <span data-year></span> · thiago.catiteo.com</p>
+  </div>
+</footer>
+
+<script>
+  const yearEl = document.querySelector('[data-year]');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+</script>
+
+<style>
+  .contact-panel {
+    padding: clamp(2rem, 5vw, 3.5rem);
+    border: 1px solid var(--border);
+    background:
+      linear-gradient(135deg, var(--accent-soft), transparent 55%),
+      var(--bg-elevated);
+  }
+
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin: 2rem 0 1.5rem;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.75rem 1.35rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition:
+      transform 0.3s var(--ease),
+      background 0.3s var(--ease),
+      border-color 0.3s var(--ease);
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #16120a;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    background: var(--accent-strong);
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .btn-ghost:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+
+  .contact-socials {
+    margin-top: 0.5rem;
+  }
+
+  .site-footer {
+    padding: 2rem 0 3rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .footer-brand {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .footer-note {
+    margin: 0;
+  }
+
+  .footer-inner p {
+    margin: 0;
+  }
+</style>

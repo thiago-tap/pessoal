@@ -1,0 +1,85 @@
+---
+import type { SocialLink } from '../data/site';
+
+interface Props {
+  links: readonly SocialLink[];
+  className?: string;
+}
+
+const { links, className = '' } = Astro.props;
+
+const icons: Record<string, string> = {
+  instagram:
+    'M12 7.2A4.8 4.8 0 1 0 12 16.8 4.8 4.8 0 0 0 12 7.2zm0 7.7a2.9 2.9 0 1 1 0-5.8 2.9 2.9 0 0 1 0 5.8zM17.5 6.6a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 2.5c-2.5 0-2.8 0-3.8.1-2.5.1-3.7 1.3-3.8 3.8-.1 1-.1 1.3-.1 3.8s0 2.8.1 3.8c.1 2.5 1.3 3.7 3.8 3.8 1 .1 1.3.1 3.8.1s2.8 0 3.8-.1c2.5-.1 3.7-1.3 3.8-3.8.1-1 .1-1.3.1-3.8s0-2.8-.1-3.8c-.1-2.5-1.3-3.7-3.8-3.8-1-.1-1.3-.1-3.8-.1zm0 1.7c2.4 0 2.7 0 3.7.1 1.8.1 2.6.9 2.7 2.7.1 1 .1 1.2.1 3.6s0 2.6-.1 3.6c-.1 1.8-.9 2.6-2.7 2.7-1 .1-1.2.1-3.7.1s-2.7 0-3.7-.1c-1.8-.1-2.6-.9-2.7-2.7-.1-1-.1-1.2-.1-3.6s0-2.6.1-3.6c.1-1.8.9-2.6 2.7-2.7 1-.1 1.3-.1 3.7-.1z',
+  whatsapp:
+    'M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 0 1 6.9 12.5l-.4.6.9 3.3-3.3-.9-.6.3A8.2 8.2 0 1 1 12 3.8zm4.6 9.4c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.8-.8 1c-.1.1-.3.2-.5.1-1.4-.7-2.4-1.3-3.3-2.9-.1-.2 0-.3.1-.4l.5-.6c.1-.2.2-.3.1-.5s-.5-1.4-.7-1.9c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.9 4.4 3.9 2.5 1 2.5.6 3 .6.5 0 1.5-.6 1.7-1.1.2-.5.2-1 .1-1.1-.1-.1-.3-.2-.5-.3z',
+  linkedin:
+    'M6.5 9.5H3.7V20h2.8V9.5zM5.1 4a1.6 1.6 0 1 0 0 3.2A1.6 1.6 0 0 0 5.1 4zM20.3 13.2c0-2.7-1.4-4-3.4-4-1.6 0-2.3.9-2.7 1.5V9.5h-2.8c0 .5 0 10.5 0 10.5h2.8v-5.9c0-.3 0-.6.1-.8.3-.6.9-1.3 1.9-1.3 1.3 0 1.9 1 1.9 2.5V20h2.8v-6.8z',
+  github:
+    'M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-3 .7-3.6-1.4-3.6-1.4-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 1 .1-.7.4-1.1.6-1.4-2.4-.3-4.9-1.2-4.9-5.3a4.1 4.1 0 0 1 1.1-2.9c-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8a4.1 4.1 0 0 1 1.1 2.9c0 4.1-2.5 5-4.9 5.3.4.3.7.9.7 1.9v2.7c0 .3.2.6.7.5A10 10 0 0 0 12 2z',
+  telegram:
+    'M21.5 4.3 3.7 11.2c-1.2.5-1.2 1.1-.2 1.4l4.6 1.4 1.8 5.4c.2.6.4.8 1 .8.6 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c.6.3 1 .2 1.2-.6L22.8 5.5c.3-1.2-.5-1.8-1.3-1.2zM9.8 14.1l-.3 3.2 1.5-1.4 6.5-5.9c.3-.2 0-.4-.3-.2l-7.4 4.3z',
+  x: 'M4 4h3.2l4.3 5.8L16.8 4H20l-6.1 7.1L20.5 20h-3.2l-4.7-6.3L7.2 20H4l6.5-7.5L4 4z',
+  email:
+    'M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11zm1.7.5 7.3 5.1L19.3 7H4.7zM19.5 8.9l-6.7 4.7a1.2 1.2 0 0 1-1.4 0L4.5 8.9V17h15V8.9z',
+};
+---
+
+<ul class:list={['social-list', className]}>
+  {
+    links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          target={link.id === 'email' ? undefined : '_blank'}
+          rel={link.id === 'email' ? undefined : 'noopener noreferrer'}
+          aria-label={link.label}
+          title={link.label}
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+            <path d={icons[link.id] ?? icons.email} />
+          </svg>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .social-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .social-list a {
+    display: grid;
+    place-items: center;
+    width: 2.55rem;
+    height: 2.55rem;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+    color: var(--text);
+    text-decoration: none;
+    transition:
+      transform 0.3s var(--ease),
+      border-color 0.3s var(--ease),
+      color 0.3s var(--ease),
+      background 0.3s var(--ease);
+  }
+
+  .social-list a:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    color: var(--accent-strong);
+    background: var(--accent-soft);
+  }
+
+  svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+</style>

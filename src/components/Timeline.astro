@@ -1,0 +1,86 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="section timeline" id="trajetoria">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Trajetória</p>
+      <h2 class="section-title">Marcos que contam a história</h2>
+      <p class="section-lead">
+        Do Java corporativo aos sistemas críticos — e aos negócios construídos em paralelo.
+      </p>
+    </div>
+
+    <ol class="milestones">
+      {
+        site.milestones.map((item, index) => (
+          <li class={`milestone reveal reveal-delay-${(index % 4) + 1}`}>
+            <div class="milestone-year">{item.year}</div>
+            <div class="milestone-body">
+              <h3>{item.title}</h3>
+              <p>{item.detail}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .milestones {
+    list-style: none;
+    margin: 3rem 0 0;
+    padding: 0;
+    border-left: 1px solid var(--border);
+  }
+
+  .milestone {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0 0 2.25rem 1.5rem;
+    position: relative;
+  }
+
+  .milestone::before {
+    content: '';
+    position: absolute;
+    left: -0.35rem;
+    top: 0.35rem;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+
+  .milestone-year {
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .milestone-body h3 {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 500;
+  }
+
+  .milestone-body p {
+    margin: 0;
+    max-width: 40rem;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 720px) {
+    .milestone {
+      grid-template-columns: 7.5rem 1fr;
+      gap: 1.5rem;
+      padding-left: 2rem;
+    }
+  }
+</style>
