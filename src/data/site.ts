@@ -11,7 +11,12 @@ export const site = {
   tagline: 'Desenvolvedor Full-Stack · Games & tech · Cristão · Família',
   heroSupport:
     'Full-stack em Brasília. Sistemas críticos no dia a dia, produtos próprios com propósito — e uma vida ancorada em Deus e na família.',
-  portrait: '/images/thiago.png',
+  portrait: '/images/thiago-hero.jpg',
+  photos: {
+    hero: '/images/thiago-hero.jpg',
+    about: '/images/thiago-about.jpg',
+    family: '/images/thiago-familia.jpg',
+  },
   social: {
     primary: {
       label: 'Instagram',
