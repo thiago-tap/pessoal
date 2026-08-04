@@ -41,13 +41,15 @@ npm run preview
 | `projects/logos/perfil-id.svg` | Logo Perfil.id |
 | `projects/logos/catiteo.png` | Logo Catiteo |
 | `projects/logos/azen.png` | Logo AZEN CO. |
-| `projects/logos/imav.png` | Logo Instituto IMAV (ícone; falta wordmark completa) |
+| `projects/logos/imav.png` | Logo Instituto IMAV (marca) |
 
 Preferência: PNG/SVG com **fundo transparente**. Para logos com texto branco, o card já usa placa escura.
 
 ## Continuar o projeto
 
-Ver o handoff completo: [`docs/HANDOFF.md`](docs/HANDOFF.md) (o que já foi feito + o que falta).
+Ver o handoff completo: [`docs/HANDOFF.md`](docs/HANDOFF.md).
+
+Idiomas: **PT** em `/` e **EN** em `/en/` (toggle no header).
 
 ## Publicação (`thiago.catiteo.com`)
 

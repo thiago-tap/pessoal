@@ -10,10 +10,11 @@ Documento para continuar o projeto em outra máquina.
 | Item | Estado |
 | --- | --- |
 | Site em produção | ✅ https://thiago.catiteo.com |
+| Versão EN | ✅ https://thiago.catiteo.com/en/ |
 | Repo | ✅ https://github.com/thiago-tap/pessoal |
 | Branch de trabalho / deploy | **`main` apenas** (push → GitHub Pages) |
 | Stack | Astro estático + CSS (dark/light) |
-| Idioma | PT-BR (EN ficou para depois) |
+| Idiomas | PT-BR (padrão) + EN (`/en/`) |
 
 > **Fluxo:** continue sempre em `main`. Não use feature branches para este site — o deploy de produção sai direto do `main`.
 
@@ -43,134 +44,42 @@ DNS já configurado: `thiago.catiteo.com` → CNAME → `thiago-tap.github.io`.
 
 ## O que já foi feito
 
-### Produto (decisões travadas no grill)
+### Produto
 
-- Página pessoal (não portfolio genérico de agência).
-- Seções: **Hero → Sobre → Trajetória → Projetos → Stack → Contato**.
-- Hero: nome **Thiago** + tagline; CTA principal **Instagram**.
-- Contato: CTA principal **WhatsApp** (“Vamos conversar”) com mensagem pré-preenchida.
+- Página pessoal com seções: Hero → Sobre → Trajetória → Projetos → Stack → Contato.
+- Hero: nome **Thiago** + tagline; CTA principal Instagram; foto full-bleed.
+- Contato: CTA WhatsApp com mensagem pré-preenchida.
 - Redes: Instagram, WhatsApp, LinkedIn, GitHub, Telegram, X, e-mail.
-- Projetos: Perfil.id, Catiteo, AZEN CO., Instituto IMAV.
-- Domínio: `thiago.catiteo.com`.
-- PT primeiro; EN depois.
+- Projetos com logos: Perfil.id, Catiteo, AZEN CO., Instituto IMAV (marca circular — ok).
+- Hero desktop usa recorte landscape (`thiago-hero-desktop.jpg`) via `<picture>`.
+- Tema dark/light + nav mobile.
+- **i18n PT/EN** com toggle no header (`/` ↔ `/en/`).
 
-### Técnico / UI
+### Conteúdo editável (i18n)
 
-- Site Astro com conteúdo central em `src/data/site.ts`.
-- Tema dark (padrão) + toggle light.
-- Nav mobile (hamburger).
-- Idade calculada automaticamente a partir de `birthDate` (`1991-05-30`).
-- Timeline com motion.
-- Fotos reais:
-  - `public/images/thiago-hero.jpg` — retrato estúdio (hero)
-  - `public/images/thiago-about.jpg` — formal/terno (sobre)
-  - `public/images/thiago-familia.jpg` — casamento/família
-- Crop do hero ajustado (`object-position` mais para o topo).
-- Projetos: **logos das marcas** (não mais prints de homepage).
-  - `public/images/projects/logos/perfil-id.svg`
-  - `public/images/projects/logos/catiteo.png`
-  - `public/images/projects/logos/azen.png`
-  - `public/images/projects/logos/imav.png` ← hoje só o **ícone** (marca circular)
-
-### Deploy / domínio
-
-- `public/CNAME` com `thiago.catiteo.com`
-- GitHub Actions → GitHub Pages
-- HTTPS ok em produção
-
----
-
-## Mapa de arquivos importantes
-
-| Caminho | O que editar |
+| Caminho | Função |
 | --- | --- |
-| `src/data/site.ts` | Nome, tagline, links, projetos, marcos, stack |
-| `src/components/About.astro` | Textos longos do Sobre |
-| `src/components/Hero.astro` | Layout/copy curta do hero |
-| `src/components/Projects.astro` | Cards / estilo das logos |
-| `src/components/Header.astro` | Nav + toggle de tema |
-| `src/styles/global.css` | Tokens de cor, tipografia, fundo |
+| `src/data/siteBase.ts` | Dados compartilhados (fotos, links, stack técnica) |
+| `src/data/i18n.ts` | Copy PT + EN + `getContent(locale)` |
+| `src/components/*` | Seções (recebem `content`) |
+| `src/pages/index.astro` | PT |
+| `src/pages/en/index.astro` | EN |
 | `public/images/` | Fotos e logos |
-| `.github/workflows/deploy.yml` | Pipeline de publish |
 
 ---
 
-## O que ainda precisa ser feito
+## Pendências
 
-### Prioridade alta
+**Nenhuma pendência de produto aberta.** Manutenção futura:
 
-1. **Logo completa do IMAV (wordmark com texto)** — opcional  
-   O arquivo atual (`NOVA-LOGO-IMAV.png`) é só o **símbolo circular**.  
-   Já aumentamos a escala no CSS (`logoVariant: 'mark'`) para empatar visualmente com as outras.  
-   Se aparecer uma versão com o texto “Instituto IMAV”, substitua `public/images/projects/logos/imav.png` e mude `logoVariant` para `'wide'` em `src/data/site.ts`.
-
-### Próximas melhorias (não bloqueantes)
-
-2. **Versão em inglês** (decidido para depois)  
-   - i18n simples (rotas `/en` ou toggle)  
-   - traduzir `site.ts` + textos do Sobre
-
-3. **QA visual fino**  
-   - Revisar contraste das logos no tema claro (placa escura já ajuda AZEN/Perfil.id)  
-   - Conferir mobile: nav, hero crop, cards de projetos  
-   - Hard refresh / CDN cache após deploys grandes de imagem
-
-4. **Conteúdo opcional**  
-   - Ajustar copy se quiser tom mais curto/longo  
-   - Incluir/remover redes em `site.social.links`  
-   - Atualizar marcos da trajetória quando algo mudar
-
-5. **Docs internas**  
-   - `docs/superpowers/plans/2026-08-04-site-v1.1-polish.md` está **desatualizado** (fotos já integradas). Pode apagar ou arquivar.
+- Atualizar marcos / projetos / redes quando algo mudar
+- Ajustar copy PT ou EN em `src/data/i18n.ts`
+- Se surgir wordmark do IMAV: trocar `public/images/projects/logos/imav.png` e `logoVariant` para `'wide'` em `siteBase.ts`
 
 ---
 
-## Como trocar a logo do IMAV (passo a passo)
+## Dicas
 
-```bash
-# na pasta do repo
-# 1) coloque o arquivo novo
-cp ~/Downloads/logo-imav-completa.png public/images/projects/logos/imav.png
-
-# 2) (opcional) otimizar tamanho — manter fundo transparente
-# 3) conferir local
-npm run dev
-
-# 4) publicar
-git add public/images/projects/logos/imav.png
-git commit -m "Update IMAV full wordmark logo"
-git push origin main
-```
-
-Se o arquivo for SVG:
-
-1. Salve como `public/images/projects/logos/imav.svg`
-2. Em `src/data/site.ts`, mude `image` do IMAV para `/images/projects/logos/imav.svg`
-
----
-
-## Dicas práticas (aprendidas nesta sessão)
-
-- Anexos de imagem no chat do Cursor **nem sempre** viram arquivo no workspace. Upload pelo GitHub (ou `curl`/copiar local) é mais confiável.
-- Logos com partes **brancas** (AZEN, Perfil.id) precisam de fundo escuro — por isso o “logo plate” escuro nos cards.
-- Prints de homepage foram abandonados de propósito: competiam com as fotos pessoais e o crop sempre quebrava.
-- Deploy costuma levar ~30–60s após o push em `main`. Se não atualizar, force refresh (Ctrl/Cmd+Shift+R).
-
----
-
-## Checklist ao abrir em outra máquina
-
-- [ ] `git pull origin main`
-- [ ] `npm install`
-- [ ] `npm run dev` → http://localhost:4321
-- [ ] Abrir produção: https://thiago.catiteo.com
-- [ ] Trocar logo IMAV quando disponível
-- [ ] (Opcional) planejar i18n EN
-
----
-
-## Contatos / dados já no código
-
-- E-mail: `thiago@catiteo.com`
-- Instagram: `@thiagaotap`
-- WhatsApp CTA já com texto pré-preenchido em `site.ts`
+- Logos com branco (AZEN, Perfil.id) usam placa escura nos cards.
+- Deploy ~30–60s após push em `main`. Hard refresh se a imagem não atualizar.
+- WhatsApp: mensagem localizada por idioma em `i18n.ts`.
