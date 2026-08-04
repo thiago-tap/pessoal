@@ -12,9 +12,10 @@
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
   --hero-overlay: linear-gradient(
     105deg,
-    rgba(11, 11, 12, 0.92) 0%,
-    rgba(11, 11, 12, 0.78) 42%,
-    rgba(11, 11, 12, 0.35) 100%
+    rgba(11, 11, 12, 0.94) 0%,
+    rgba(11, 11, 12, 0.82) 38%,
+    rgba(11, 11, 12, 0.28) 72%,
+    rgba(11, 11, 12, 0.12) 100%
   );
   --font-display: 'Newsreader', 'Times New Roman', serif;
   --font-body: 'Sora', system-ui, sans-serif;
