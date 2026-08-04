@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Local AI harness installs (prefer global ~/.cursor/skills)
+.agents/skills/impeccable/
+.codex/
+.cursor/
+.github/agents/
+.github/hooks/
+.github/skills/
+.impeccable/
