@@ -7,6 +7,29 @@ interface Props {
 }
 
 const { content } = Astro.props;
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: content.fullName,
+  url: content.canonical,
+  image: `${content.url}${content.photos.hero}`,
+  jobTitle: content.locale === 'en' ? 'Full-Stack Developer' : 'Desenvolvedor Full-Stack',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Brasília',
+    addressRegion: 'DF',
+    addressCountry: 'BR',
+  },
+  email: content.email,
+  sameAs: [
+    content.socialHrefs.instagram,
+    content.socialHrefs.linkedin,
+    content.socialHrefs.github,
+    content.socialHrefs.telegram,
+    content.socialHrefs.x,
+  ],
+};
 ---
 
 <!doctype html>
@@ -32,6 +55,7 @@ const { content } = Astro.props;
     <meta name="twitter:title" content={content.title} />
     <meta name="twitter:description" content={content.description} />
     <meta name="twitter:image" content={`${content.url}/og.png`} />
+    <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

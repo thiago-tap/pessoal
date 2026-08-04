@@ -18,6 +18,8 @@ const { content } = Astro.props;
         alt={content.about.photoAlt}
         width="1200"
         height="1500"
+        fetchpriority="high"
+        decoding="async"
       />
     </picture>
   </div>
@@ -29,14 +31,22 @@ const { content } = Astro.props;
     <p class="hero-support hero-animate">{content.heroSupport}</p>
     <div class="hero-actions hero-animate">
       <a
-        class="btn-primary"
+        class="btn btn-primary"
+        href={content.social.contact.href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {content.heroCtaPrimary}
+      </a>
+      <a
+        class="btn btn-ghost"
         href={content.social.primary.href}
         target="_blank"
         rel="noopener noreferrer"
       >
-        {content.social.primary.label}
+        {content.heroCtaSecondary}
       </a>
-      <a class="btn-ghost" href="#sobre">{content.heroCtaAbout}</a>
+      <a class="hero-tertiary" href="#sobre">{content.heroCtaAbout}</a>
     </div>
     <div class="hero-socials hero-animate">
       <SocialLinks links={content.social.links} />
@@ -48,6 +58,7 @@ const { content } = Astro.props;
   .hero {
     position: relative;
     min-height: calc(100svh - var(--header-h));
+    min-height: calc(100dvh - var(--header-h));
     display: grid;
     align-items: end;
     overflow: hidden;
@@ -76,7 +87,27 @@ const { content } = Astro.props;
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: var(--hero-overlay);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(11, 11, 12, 0.35) 0%,
+        rgba(11, 11, 12, 0.15) 28%,
+        rgba(11, 11, 12, 0.55) 58%,
+        rgba(11, 11, 12, 0.92) 100%
+      ),
+      var(--hero-overlay);
+  }
+
+  :global([data-theme='light']) .hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(247, 242, 234, 0.28) 0%,
+        rgba(247, 242, 234, 0.08) 30%,
+        rgba(247, 242, 234, 0.55) 60%,
+        rgba(247, 242, 234, 0.94) 100%
+      ),
+      var(--hero-overlay);
   }
 
   .hero-content {
@@ -114,54 +145,41 @@ const { content } = Astro.props;
   .hero-support {
     margin: 1rem 0 0;
     max-width: 32rem;
-    color: var(--text-muted);
-    font-size: 1rem;
+    color: color-mix(in srgb, var(--text) 82%, var(--text-muted));
+    font-size: 1.02rem;
+    font-weight: 500;
+    line-height: 1.55;
+    text-shadow: 0 1px 16px rgba(0, 0, 0, 0.35);
+  }
+
+  :global([data-theme='light']) .hero-support {
+    text-shadow: 0 1px 12px rgba(247, 242, 234, 0.7);
   }
 
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.85rem;
+    align-items: center;
+    gap: 0.85rem 1rem;
     margin-top: 2rem;
   }
 
-  .btn-primary,
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 3rem;
-    padding: 0.75rem 1.35rem;
+  .hero-tertiary {
+    color: var(--text-muted);
     font-size: 0.92rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-decoration: none;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in srgb, var(--text-muted) 55%, transparent);
     transition:
-      transform 0.3s var(--ease),
-      background 0.3s var(--ease),
-      border-color 0.3s var(--ease),
-      color 0.3s var(--ease);
+      color 0.25s var(--ease),
+      text-decoration-color 0.25s var(--ease);
   }
 
-  .btn-primary {
-    background: var(--accent);
-    color: #16120a;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    background: var(--accent-strong);
-  }
-
-  .btn-ghost {
-    border: 1px solid var(--border);
-    background: color-mix(in srgb, var(--bg) 35%, transparent);
-    color: var(--text);
-  }
-
-  .btn-ghost:hover {
-    transform: translateY(-2px);
-    border-color: var(--accent);
+  .hero-tertiary:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
   }
 
   .hero-socials {
@@ -207,6 +225,30 @@ const { content } = Astro.props;
 
     .hero-media img {
       object-position: 72% 42%;
+    }
+
+    .hero-overlay {
+      background:
+        linear-gradient(
+          90deg,
+          rgba(11, 11, 12, 0.94) 0%,
+          rgba(11, 11, 12, 0.72) 38%,
+          rgba(11, 11, 12, 0.22) 68%,
+          rgba(11, 11, 12, 0.08) 100%
+        ),
+        linear-gradient(180deg, rgba(11, 11, 12, 0.2) 0%, transparent 40%, rgba(11, 11, 12, 0.45) 100%);
+    }
+
+    :global([data-theme='light']) .hero-overlay {
+      background:
+        linear-gradient(
+          90deg,
+          rgba(247, 242, 234, 0.96) 0%,
+          rgba(247, 242, 234, 0.78) 38%,
+          rgba(247, 242, 234, 0.22) 68%,
+          rgba(247, 242, 234, 0.06) 100%
+        ),
+        linear-gradient(180deg, rgba(247, 242, 234, 0.18) 0%, transparent 40%, rgba(247, 242, 234, 0.5) 100%);
     }
 
     .hero-content {

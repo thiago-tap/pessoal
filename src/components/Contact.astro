@@ -17,7 +17,7 @@ const { content } = Astro.props;
 
     <div class="contact-actions">
       <a
-        class="btn-primary"
+        class="btn btn-primary"
         href={content.social.contact.href}
         target="_blank"
         rel="noopener noreferrer"
@@ -25,14 +25,14 @@ const { content } = Astro.props;
         {content.contact.whatsappCta}
       </a>
       <a
-        class="btn-ghost"
+        class="btn btn-ghost"
         href={content.social.primary.href}
         target="_blank"
         rel="noopener noreferrer"
       >
-        Instagram
+        {content.heroCtaSecondary}
       </a>
-      <a class="btn-ghost" href={`mailto:${content.email}`}>{content.contact.emailLabel}</a>
+      <a class="btn btn-ghost" href={`mailto:${content.email}`}>{content.contact.emailLabel}</a>
     </div>
 
     <SocialLinks links={content.social.links} className="contact-socials" />
@@ -78,45 +78,6 @@ const { content } = Astro.props;
     flex-wrap: wrap;
     gap: 0.85rem;
     margin: 2rem 0 1.5rem;
-  }
-
-  .btn-primary,
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 3rem;
-    padding: 0.75rem 1.35rem;
-    font-size: 0.92rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-decoration: none;
-    transition:
-      transform 0.3s var(--ease),
-      background 0.3s var(--ease),
-      border-color 0.3s var(--ease),
-      color 0.3s var(--ease);
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #16120a;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    background: var(--accent-strong);
-  }
-
-  .btn-ghost {
-    border: 1px solid var(--border);
-    background: color-mix(in srgb, var(--bg) 35%, transparent);
-    color: var(--text);
-  }
-
-  .btn-ghost:hover {
-    transform: translateY(-2px);
-    border-color: var(--accent);
   }
 
   .site-footer {

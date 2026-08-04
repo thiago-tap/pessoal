@@ -14,7 +14,13 @@ const homeHref = content.pathPrefix ? `${content.pathPrefix}/` : '/';
     <a class="brand" href={`${homeHref}#topo`} aria-label={content.brandAria}>Thiago</a>
 
     <nav class="nav nav--desktop" aria-label={content.navAria}>
-      {content.nav.map((link) => <a href={link.href}>{link.label}</a>)}
+      {
+        content.nav.map((link) => (
+          <a href={link.href} data-nav-link={link.href.replace('#', '')}>
+            {link.label}
+          </a>
+        ))
+      }
     </nav>
 
     <div class="header-actions">
@@ -49,7 +55,13 @@ const homeHref = content.pathPrefix ? `${content.pathPrefix}/` : '/';
 
   <nav class="nav nav--mobile" id="mobile-nav" aria-label={content.navMobileAria} hidden>
     <div class="container nav-mobile-inner">
-      {content.nav.map((link) => <a href={link.href}>{link.label}</a>)}
+      {
+        content.nav.map((link) => (
+          <a href={link.href} data-nav-link={link.href.replace('#', '')}>
+            {link.label}
+          </a>
+        ))
+      }
       <a class="lang-toggle lang-toggle--mobile" href={content.alternatePath}>
         {content.alternateLabel}
       </a>
@@ -104,6 +116,44 @@ const homeHref = content.pathPrefix ? `${content.pathPrefix}/` : '/';
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') setMenuOpen(false);
   });
+
+  const sectionIds = ['sobre', 'trajetoria', 'projetos', 'stack', 'contato'];
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+  const setActive = (id) => {
+    navLinks.forEach((link) => {
+      const match = link.getAttribute('data-nav-link') === id;
+      link.classList.toggle('is-active', match);
+      if (match) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  if ('IntersectionObserver' in window) {
+    const ratios = new Map();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          ratios.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+        }
+        let bestId = '';
+        let bestRatio = 0;
+        for (const id of sectionIds) {
+          const ratio = ratios.get(id) || 0;
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestId = id;
+          }
+        }
+        if (bestId) setActive(bestId);
+      },
+      { threshold: [0.15, 0.35, 0.55, 0.75], rootMargin: '-20% 0px -45% 0px' },
+    );
+
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+  }
 </script>
 
 <style>
@@ -140,6 +190,7 @@ const homeHref = content.pathPrefix ? `${content.pathPrefix}/` : '/';
   }
 
   .nav a {
+    position: relative;
     color: var(--text-muted);
     font-size: 0.92rem;
     font-weight: 500;
@@ -147,8 +198,32 @@ const homeHref = content.pathPrefix ? `${content.pathPrefix}/` : '/';
     transition: color 0.25s var(--ease);
   }
 
-  .nav a:hover {
+  .nav a:hover,
+  .nav a.is-active {
     color: var(--text);
+  }
+
+  .nav--desktop a.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.45rem;
+    height: 2px;
+    background: var(--accent);
+    transform-origin: center;
+    animation: nav-underline 0.35s var(--ease);
+  }
+
+  @keyframes nav-underline {
+    from {
+      transform: scaleX(0.4);
+      opacity: 0;
+    }
+    to {
+      transform: scaleX(1);
+      opacity: 1;
+    }
   }
 
   .header-actions {
@@ -164,9 +239,11 @@ const homeHref = content.pathPrefix ? `${content.pathPrefix}/` : '/';
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.4rem;
+    min-width: 44px;
+    min-height: 44px;
     padding: 0.35rem 0.7rem;
     border: 1px solid var(--border);
+    border-radius: var(--radius-control);
     background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
     color: var(--text);
     font: inherit;
@@ -179,7 +256,8 @@ const homeHref = content.pathPrefix ? `${content.pathPrefix}/` : '/';
     transition:
       border-color 0.25s var(--ease),
       background 0.25s var(--ease),
-      color 0.25s var(--ease);
+      color 0.25s var(--ease),
+      transform 0.25s var(--ease);
   }
 
   .lang-toggle:hover,
@@ -187,6 +265,7 @@ const homeHref = content.pathPrefix ? `${content.pathPrefix}/` : '/';
   .menu-toggle:hover {
     border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
     background: var(--accent-soft);
+    transform: translateY(-1px);
   }
 
   .theme-toggle {
@@ -265,7 +344,12 @@ const homeHref = content.pathPrefix ? `${content.pathPrefix}/` : '/';
   }
 
   .nav--mobile a {
-    padding: 0.65rem 0;
+    padding: 0.75rem 0;
+    min-height: 44px;
+  }
+
+  .nav--mobile a.is-active {
+    color: var(--accent);
   }
 
   .lang-toggle--mobile {
@@ -288,6 +372,12 @@ const homeHref = content.pathPrefix ? `${content.pathPrefix}/` : '/';
 
     .lang-toggle--mobile {
       display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav--desktop a.is-active::after {
+      animation: none;
     }
   }
 </style>

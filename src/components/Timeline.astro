@@ -46,14 +46,17 @@ const { content } = Astro.props;
     position: absolute;
     left: -1px;
     top: 0;
+    bottom: 0;
     width: 2px;
-    height: 0;
     background: linear-gradient(to bottom, var(--accent), transparent);
-    transition: height 1.2s var(--ease);
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: transform 1.15s var(--ease);
+    will-change: transform;
   }
 
   .milestones.is-drawn::before {
-    height: 100%;
+    transform: scaleY(1);
   }
 
   .milestone {
@@ -112,6 +115,13 @@ const { content } = Astro.props;
       grid-template-columns: 7.5rem 1fr;
       gap: 1.5rem;
       padding-left: 2rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .milestones::before {
+      transform: scaleY(1);
+      transition: none;
     }
   }
 </style>

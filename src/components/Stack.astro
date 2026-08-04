@@ -21,6 +21,7 @@ const { content } = Astro.props;
         content.stackGroups.map((group, index) => (
           <div class={`stack-group reveal reveal-delay-${(index % 4) + 1}`}>
             <h3>{group.title}</h3>
+            <p class="stack-blurb">{group.blurb}</p>
             <ul>
               {group.items.map((item) => (
                 <li>{item}</li>
@@ -36,17 +37,25 @@ const { content } = Astro.props;
 <style>
   .stack-grid {
     display: grid;
-    gap: 1.5rem;
+    gap: 1.75rem;
     margin-top: 3rem;
   }
 
   .stack-group h3 {
-    margin: 0 0 1rem;
+    margin: 0 0 0.45rem;
     color: var(--accent);
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+  }
+
+  .stack-blurb {
+    margin: 0 0 1rem;
+    max-width: 32rem;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
   }
 
   .stack-group ul {

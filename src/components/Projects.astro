@@ -6,6 +6,8 @@ interface Props {
 }
 
 const { content } = Astro.props;
+const featured = content.projectItems.find((p) => p.featured) ?? content.projectItems[0];
+const rest = content.projectItems.filter((p) => p !== featured);
 ---
 
 <section class="section projects" id="projetos">
@@ -16,16 +18,44 @@ const { content } = Astro.props;
       <p class="section-lead">{content.projects.lead}</p>
     </div>
 
+    {
+      featured && (
+        <a
+          class="project project--featured reveal"
+          href={featured.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class={`project-media project-media--${featured.logoVariant}`}>
+            <img
+              class={`project-logo project-logo--${featured.logoVariant}`}
+              src={featured.image}
+              alt={`Logo ${featured.name}`}
+              loading="lazy"
+            />
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-index">01</span>
+              <span class="project-link">{content.projects.visit}</span>
+            </div>
+            <h3>{featured.name}</h3>
+            <p>{featured.description}</p>
+          </div>
+        </a>
+      )
+    }
+
     <div class="project-list">
       {
-        content.projectItems.map((project, index) => (
+        rest.map((project, index) => (
           <a
             class={`project reveal reveal-delay-${(index % 4) + 1}`}
             href={project.href}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div class="project-media">
+            <div class={`project-media project-media--${project.logoVariant}`}>
               <img
                 class={`project-logo project-logo--${project.logoVariant}`}
                 src={project.image}
@@ -35,7 +65,7 @@ const { content } = Astro.props;
             </div>
             <div class="project-body">
               <div class="project-meta">
-                <span class="project-index">0{index + 1}</span>
+                <span class="project-index">0{index + 2}</span>
                 <span class="project-link">{content.projects.visit}</span>
               </div>
               <h3>{project.name}</h3>
@@ -52,7 +82,7 @@ const { content } = Astro.props;
   .project-list {
     display: grid;
     gap: 1.25rem;
-    margin-top: 3rem;
+    margin-top: 1.25rem;
   }
 
   .project {
@@ -74,6 +104,12 @@ const { content } = Astro.props;
     background: var(--accent-soft);
   }
 
+  .project--featured {
+    margin-top: 3rem;
+    gap: 1.25rem;
+    padding: 1rem;
+  }
+
   .project-media {
     display: grid;
     place-items: center;
@@ -84,13 +120,24 @@ const { content } = Astro.props;
     background:
       radial-gradient(ellipse 70% 80% at 50% 40%, rgba(224, 168, 74, 0.08), transparent 65%),
       #0c0c0e;
-    transition: border-color 0.35s var(--ease);
+    transition: border-color 0.35s var(--ease), background 0.35s var(--ease);
   }
 
-  :global([data-theme='light']) .project-media {
+  .project--featured .project-media {
+    min-height: 12rem;
+  }
+
+  /* Light mode: keep dark plate for light/white logos; lift colorful marks slightly */
+  :global([data-theme='light']) .project-media--wide {
     background:
       radial-gradient(ellipse 70% 80% at 50% 40%, rgba(184, 121, 31, 0.1), transparent 65%),
-      #17171a;
+      #121214;
+  }
+
+  :global([data-theme='light']) .project-media--mark {
+    background:
+      radial-gradient(ellipse 70% 80% at 50% 40%, rgba(184, 121, 31, 0.12), transparent 65%),
+      #efe8dc;
   }
 
   .project:hover .project-media {
@@ -108,6 +155,11 @@ const { content } = Astro.props;
     max-height: 4.25rem;
   }
 
+  .project--featured .project-logo--wide {
+    width: min(68%, 18rem);
+    max-height: 5rem;
+  }
+
   .project-logo--mark {
     width: auto;
     max-width: min(52%, 7rem);
@@ -122,6 +174,11 @@ const { content } = Astro.props;
     display: grid;
     gap: 0.65rem;
     padding: 0.35rem 0.35rem 0.55rem;
+  }
+
+  .project--featured .project-body {
+    max-width: 40rem;
+    padding-inline: 0.5rem;
   }
 
   .project-meta {
@@ -142,6 +199,10 @@ const { content } = Astro.props;
     font-weight: 500;
   }
 
+  .project--featured h3 {
+    font-size: clamp(1.85rem, 4vw, 2.55rem);
+  }
+
   .project p {
     margin: 0;
     color: var(--text-muted);
@@ -149,13 +210,23 @@ const { content } = Astro.props;
   }
 
   @media (min-width: 900px) {
+    .project--featured {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .project--featured .project-media {
+      min-height: 14rem;
+    }
+
     .project-list {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 1.35rem;
     }
 
     .project-media {
-      min-height: 10.5rem;
+      min-height: 9rem;
     }
   }
 </style>
