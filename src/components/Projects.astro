@@ -23,10 +23,9 @@ import { site } from '../data/site';
           >
             <div class="project-media">
               <img
+                class="project-logo"
                 src={project.image}
-                alt={`Preview de ${project.name}`}
-                width="1200"
-                height="750"
+                alt={`Logo ${project.name}`}
                 loading="lazy"
               />
             </div>
@@ -72,21 +71,38 @@ import { site } from '../data/site';
   }
 
   .project-media {
+    display: grid;
+    place-items: center;
+    min-height: 9.5rem;
+    padding: 1.75rem 1.5rem;
     overflow: hidden;
     border: 1px solid var(--border);
-    background: #0c0c0e;
+    background:
+      radial-gradient(ellipse 70% 80% at 50% 40%, rgba(224, 168, 74, 0.08), transparent 65%),
+      #0c0c0e;
+    transition: border-color 0.35s var(--ease);
   }
 
-  .project-media img {
-    width: 100%;
-    aspect-ratio: 21 / 10;
-    object-fit: cover;
-    object-position: top center;
-    transition: transform 0.7s var(--ease);
+  :global([data-theme='light']) .project-media {
+    background:
+      radial-gradient(ellipse 70% 80% at 50% 40%, rgba(184, 121, 31, 0.1), transparent 65%),
+      #17171a;
   }
 
-  .project:hover .project-media img {
-    transform: scale(1.03);
+  .project:hover .project-media {
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  }
+
+  .project-logo {
+    width: min(72%, 15rem);
+    max-height: 4.25rem;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.55s var(--ease);
+  }
+
+  .project:hover .project-logo {
+    transform: scale(1.04);
   }
 
   .project-body {
@@ -123,6 +139,10 @@ import { site } from '../data/site';
     .project-list {
       grid-template-columns: 1fr 1fr;
       gap: 1.35rem;
+    }
+
+    .project-media {
+      min-height: 10.5rem;
     }
   }
 </style>
