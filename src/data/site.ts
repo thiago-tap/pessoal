@@ -101,28 +101,24 @@ export const site = {
       description:
         'Perfis na internet mais profissionais (e menos genéricos) para pessoas e pequenos negócios — com qualidade de produto e preço acessível.',
       href: 'https://perfil.id/',
-      image: '/images/projects/perfil-id.jpg',
     },
     {
       name: 'Catiteo',
       description:
         'Serviço de extrema qualidade para quem quer algo a mais na internet: sites complexos e sistemas sob medida.',
       href: 'https://catiteo.com/',
-      image: '/images/projects/catiteo.jpg',
     },
     {
       name: 'AZEN CO.',
       description:
         'Marca de roupa com propósito: identidade, intenção e fé — minimalismo e autenticidade num mundo de ruído.',
       href: 'https://www.azenco.com.br/',
-      image: '/images/projects/azen.jpg',
     },
     {
       name: 'Instituto IMAV',
       description:
         'Presença digital institucional com visual cuidado e foco em clareza — um dos trabalhos entregues para cliente.',
       href: 'https://institutoimav.com.br/',
-      image: '/images/projects/imav.jpg',
     },
   ],
   stack: {
