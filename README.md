@@ -38,7 +38,7 @@ npm run preview
 | `thiago-hero.jpg` | Hero |
 | `thiago-about.jpg` | Sobre (retrato) |
 | `thiago-familia.jpg` | Sobre (família) |
-| `projects/logos/perfil-id.svg` | Logo perfil.id |
+| `projects/logos/perfil-id.svg` | Logo Perfil.id |
 | `projects/logos/catiteo.png` | Logo Catiteo |
 | `projects/logos/azen.png` | Logo AZEN CO. |
 | `projects/logos/imav.png` | Logo Instituto IMAV (ícone; falta wordmark completa) |

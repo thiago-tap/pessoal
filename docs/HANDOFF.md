@@ -50,7 +50,7 @@ DNS já configurado: `thiago.catiteo.com` → CNAME → `thiago-tap.github.io`.
 - Hero: nome **Thiago** + tagline; CTA principal **Instagram**.
 - Contato: CTA principal **WhatsApp** (“Vamos conversar”) com mensagem pré-preenchida.
 - Redes: Instagram, WhatsApp, LinkedIn, GitHub, Telegram, X, e-mail.
-- Projetos: perfil.id, Catiteo, AZEN CO., Instituto IMAV.
+- Projetos: Perfil.id, Catiteo, AZEN CO., Instituto IMAV.
 - Domínio: `thiago.catiteo.com`.
 - PT primeiro; EN depois.
 
@@ -111,7 +111,7 @@ DNS já configurado: `thiago.catiteo.com` → CNAME → `thiago-tap.github.io`.
    - traduzir `site.ts` + textos do Sobre
 
 3. **QA visual fino**  
-   - Revisar contraste das logos no tema claro (placa escura já ajuda AZEN/perfil.id)  
+   - Revisar contraste das logos no tema claro (placa escura já ajuda AZEN/Perfil.id)  
    - Conferir mobile: nav, hero crop, cards de projetos  
    - Hard refresh / CDN cache após deploys grandes de imagem
 
@@ -152,7 +152,7 @@ Se o arquivo for SVG:
 ## Dicas práticas (aprendidas nesta sessão)
 
 - Anexos de imagem no chat do Cursor **nem sempre** viram arquivo no workspace. Upload pelo GitHub (ou `curl`/copiar local) é mais confiável.
-- Logos com partes **brancas** (AZEN, perfil.id) precisam de fundo escuro — por isso o “logo plate” escuro nos cards.
+- Logos com partes **brancas** (AZEN, Perfil.id) precisam de fundo escuro — por isso o “logo plate” escuro nos cards.
 - Prints de homepage foram abandonados de propósito: competiam com as fotos pessoais e o crop sempre quebrava.
 - Deploy costuma levar ~30–60s após o push em `main`. Se não atualizar, force refresh (Ctrl/Cmd+Shift+R).
 
