@@ -1,36 +1,37 @@
 ---
-import { site } from '../data/site';
+import type { SiteContent } from '../data/i18n';
 import '../styles/global.css';
 
 interface Props {
-  title?: string;
-  description?: string;
+  content: SiteContent;
 }
 
-const { title = site.title, description = site.description } = Astro.props;
-const canonical = site.url;
+const { content } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="pt-BR" data-theme="dark">
+<html lang={content.htmlLang} data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    <title>{content.title}</title>
+    <meta name="description" content={content.description} />
+    <link rel="canonical" href={content.canonical} />
+    <link rel="alternate" hreflang="pt-BR" href={`${content.url}/`} />
+    <link rel="alternate" hreflang="en" href={`${content.url}/en/`} />
+    <link rel="alternate" hreflang="x-default" href={`${content.url}/`} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${site.url}/og.png`} />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content={content.canonical} />
+    <meta property="og:title" content={content.title} />
+    <meta property="og:description" content={content.description} />
+    <meta property="og:image" content={`${content.url}/og.png`} />
+    <meta property="og:locale" content={content.ogLocale} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${site.url}/og.png`} />
+    <meta name="twitter:title" content={content.title} />
+    <meta name="twitter:description" content={content.description} />
+    <meta name="twitter:image" content={`${content.url}/og.png`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -50,7 +51,7 @@ const canonical = site.url;
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <a class="skip-link" href="#conteudo">{content.skipLink}</a>
     <slot />
     <script>
       const reveals = document.querySelectorAll('.reveal');

@@ -1,21 +1,24 @@
 ---
-import { site } from '../data/site';
+import type { SiteContent } from '../data/i18n';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
 ---
 
 <section class="section about" id="sobre">
   <div class="container about-grid">
     <div class="about-intro reveal">
-      <p class="section-label">Sobre</p>
-      <h2 class="section-title">Quem sou eu</h2>
-      <p class="section-lead">
-        Código em sistemas críticos, produtos próprios com cara — e uma vida que não separa fé,
-        família e trabalho.
-      </p>
+      <p class="section-label">{content.about.label}</p>
+      <h2 class="section-title">{content.about.title}</h2>
+      <p class="section-lead">{content.about.lead}</p>
       <div class="about-photos">
         <figure class="about-photo">
           <img
-            src={site.photos.about}
-            alt="Thiago Albuquerque de Paula"
+            src={content.photos.about}
+            alt={content.about.photoAlt}
             width="640"
             height="800"
             loading="lazy"
@@ -23,67 +26,31 @@ import { site } from '../data/site';
         </figure>
         <figure class="about-photo about-photo--wide">
           <img
-            src={site.photos.family}
-            alt="Thiago e Thais Mara"
+            src={content.photos.family}
+            alt={content.about.familyAlt}
             width="960"
             height="640"
             loading="lazy"
           />
-          <figcaption>Deus e a família no centro</figcaption>
+          <figcaption>{content.about.familyCaption}</figcaption>
         </figure>
       </div>
     </div>
 
     <div class="about-copy">
-      <p class="reveal reveal-delay-1">
-        Sou <strong>{site.fullName}</strong>, tenho{' '}
-        <strong><span data-age></span> anos</strong> e vivo em <strong>{site.location}</strong>.
-        Trabalho como desenvolvedor full-stack — do banco à interface — com obsessão por coisa que
-        aguenta o tranco no mundo real. Sou casado com <strong>Thais Mara</strong>;{' '}
-        <strong>Deus e a família</strong> não são “detalhe da bio”: são o filtro do que vale a
-        pena construir. Se um projeto não cabe nessa vida, ele não entra na fila.
-      </p>
-      <p class="reveal reveal-delay-2">
-        Sou cristão, com fé em Deus e uma paixão genuína por <strong>Jesus Cristo</strong>. Isso
-        muda o jeito de trabalhar: prazo sem enrolação, qualidade sem teatro, segurança sem
-        atalho. Tecnologia, para mim, é ferramenta para <strong>servir pessoas</strong> — não um
-        fim em si. Quero ser alguém mais íntegro e útil a cada ano; o código é só um dos lugares
-        onde isso aparece.
-      </p>
-      <p class="reveal reveal-delay-3">
-        O que me prende na área é enxergar o sistema inteiro: legado que precisa viver, API que
-        não pode cair, tela que alguém usa sob pressão. Gosto de modernizar sem quebrar o que já
-        funciona, cuidar de performance e entregar interface que a pessoa entende sem manual. Fora
-        do teclado, a mesma curiosidade vira <strong>jogos de tabuleiro</strong> e{' '}
-        <strong>games digitais</strong> — regras, sistemas, convivência. Nerd assumido, com método.
-      </p>
-      <p class="reveal reveal-delay-4">
-        No dia a dia profissional, atuo em ambientes de <strong>alta criticidade</strong>. Na{' '}
-        <strong>Minsait/Indra</strong>, participo de projetos corporativos de grande porte:
-        aplicações e APIs em que estabilidade, segurança e qualidade de código são o trabalho, não
-        o slide. Backend robusto (Java, Quarkus, Spring) + frontend cuidadoso (Angular e o
-        ecossistema web), com testes e evolução contínua — o tipo de entrega que só aparece quando
-        o sistema está no ar e ninguém percebe.
-      </p>
-      <p class="reveal">
-        Fora do expediente, construo produto de ponta a ponta. O <strong>Perfil.id</strong> nasceu
-        da frustração com perfis genéricos: pessoas e pequenos negócios merecem presença online
-        profissional <strong>sem preço de agência</strong>. A <strong>Catiteo</strong> é o braço
-        para quem precisa de mais — site complexo, sistema sob medida, acabamento de quem vai
-        assinar o resultado. A <strong>AZEN CO.</strong> é outra frente: marca de roupa com
-        identidade, intenção e fé — minimalismo e autenticidade num mercado barulhento. Cada um
-        desses projetos existe porque resolve uma dor real, não porque “ficava bonito no portfólio”.
-      </p>
-      <p class="reveal">
-        Se você chegou até aqui, provavelmente busca alguém que una técnica séria com clareza de
-        propósito. É isso que ofereço: produto bem feito, conversa direta e trabalho que respeita
-        quem vai usar — e quem vai viver com as consequências do que foi entregue.
-      </p>
+      {
+        content.about.paragraphsHtml.map((html, index) => (
+          <p
+            class={`reveal${index < 4 ? ` reveal-delay-${index + 1}` : ''}`}
+            set:html={html}
+          />
+        ))
+      }
     </div>
   </div>
 </section>
 
-<script define:vars={{ birthDate: site.birthDate }}>
+<script define:vars={{ birthDate: content.birthDate }}>
   function calcAge(isoDate) {
     const birth = new Date(`${isoDate}T00:00:00`);
     const now = new Date();
@@ -161,7 +128,7 @@ import { site } from '../data/site';
     font-size: 1.05rem;
   }
 
-  .about-copy strong {
+  .about-copy :global(strong) {
     color: var(--text);
     font-weight: 600;
   }

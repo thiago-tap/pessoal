@@ -1,4 +1,5 @@
 ---
+import { getContent } from '../data/i18n';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
@@ -7,16 +8,18 @@ import Timeline from '../components/Timeline.astro';
 import Projects from '../components/Projects.astro';
 import Stack from '../components/Stack.astro';
 import Contact from '../components/Contact.astro';
+
+const content = getContent('pt');
 ---
 
-<BaseLayout>
-  <Header />
+<BaseLayout content={content}>
+  <Header content={content} />
   <main id="conteudo">
-    <Hero />
-    <About />
-    <Timeline />
-    <Projects />
-    <Stack />
-    <Contact />
+    <Hero content={content} />
+    <About content={content} />
+    <Timeline content={content} />
+    <Projects content={content} />
+    <Stack content={content} />
+    <Contact content={content} />
   </main>
 </BaseLayout>

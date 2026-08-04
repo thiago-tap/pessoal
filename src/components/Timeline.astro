@@ -1,20 +1,24 @@
 ---
-import { site } from '../data/site';
+import type { SiteContent } from '../data/i18n';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
 ---
 
 <section class="section timeline" id="trajetoria">
   <div class="container">
     <div class="reveal">
-      <p class="section-label">Trajetória</p>
-      <h2 class="section-title">Marcos que contam a história</h2>
-      <p class="section-lead">
-        Do Java corporativo aos sistemas críticos — e aos negócios construídos em paralelo.
-      </p>
+      <p class="section-label">{content.timeline.label}</p>
+      <h2 class="section-title">{content.timeline.title}</h2>
+      <p class="section-lead">{content.timeline.lead}</p>
     </div>
 
     <ol class="milestones">
       {
-        site.milestones.map((item, index) => (
+        content.timeline.milestones.map((item, index) => (
           <li class={`milestone reveal reveal-delay-${(index % 4) + 1}`}>
             <div class="milestone-year">{item.year}</div>
             <div class="milestone-body">

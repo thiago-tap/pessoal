@@ -1,25 +1,24 @@
 ---
-import { site } from '../data/site';
+import type { SiteContent } from '../data/i18n';
 
-const groups = [
-  { title: 'Backend', items: site.stack.backend },
-  { title: 'Frontend', items: site.stack.frontend },
-  { title: 'Qualidade & entrega', items: site.stack.quality },
-  { title: 'Também', items: site.stack.also },
-];
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
 ---
 
 <section class="section stack" id="stack">
   <div class="container">
     <div class="reveal">
-      <p class="section-label">Stack</p>
-      <h2 class="section-title">Ferramentas que uso de verdade</h2>
-      <p class="section-lead">Curada — sem barras de progresso, sem inventário infinito.</p>
+      <p class="section-label">{content.stack.label}</p>
+      <h2 class="section-title">{content.stack.title}</h2>
+      <p class="section-lead">{content.stack.lead}</p>
     </div>
 
     <div class="stack-grid">
       {
-        groups.map((group, index) => (
+        content.stackGroups.map((group, index) => (
           <div class={`stack-group reveal reveal-delay-${(index % 4) + 1}`}>
             <h3>{group.title}</h3>
             <ul>

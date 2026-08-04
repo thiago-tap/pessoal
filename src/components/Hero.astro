@@ -1,15 +1,21 @@
 ---
-import { site } from '../data/site';
+import type { SiteContent } from '../data/i18n';
 import SocialLinks from './SocialLinks.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
 ---
 
 <section class="hero" id="topo">
   <div class="hero-media" aria-hidden="true">
     <picture>
-      <source media="(min-width: 900px)" srcset={site.photos.heroDesktop} />
+      <source media="(min-width: 900px)" srcset={content.photos.heroDesktop} />
       <img
-        src={site.photos.hero}
-        alt="Retrato de Thiago Albuquerque de Paula"
+        src={content.photos.hero}
+        alt={content.about.photoAlt}
         width="1200"
         height="1500"
       />
@@ -17,18 +23,23 @@ import SocialLinks from './SocialLinks.astro';
   </div>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="container hero-content">
-    <p class="hero-kicker hero-animate">Brasília · Full-Stack</p>
-    <h1 class="hero-name hero-animate">{site.name}</h1>
-    <p class="hero-tagline hero-animate">{site.tagline}</p>
-    <p class="hero-support hero-animate">{site.heroSupport}</p>
+    <p class="hero-kicker hero-animate">{content.heroKicker}</p>
+    <h1 class="hero-name hero-animate">{content.name}</h1>
+    <p class="hero-tagline hero-animate">{content.tagline}</p>
+    <p class="hero-support hero-animate">{content.heroSupport}</p>
     <div class="hero-actions hero-animate">
-      <a class="btn-primary" href={site.social.primary.href} target="_blank" rel="noopener noreferrer">
-        {site.social.primary.label}
+      <a
+        class="btn-primary"
+        href={content.social.primary.href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {content.social.primary.label}
       </a>
-      <a class="btn-ghost" href="#sobre">Ver sobre ↓</a>
+      <a class="btn-ghost" href="#sobre">{content.heroCtaAbout}</a>
     </div>
     <div class="hero-socials hero-animate">
-      <SocialLinks links={site.social.links} />
+      <SocialLinks links={content.social.links} />
     </div>
   </div>
 </section>
@@ -195,7 +206,6 @@ import SocialLinks from './SocialLinks.astro';
     }
 
     .hero-media img {
-      /* Recorte landscape: rosto à direita do texto, cabeça inteira no quadro */
       object-position: 72% 42%;
     }
 
