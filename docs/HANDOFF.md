@@ -11,9 +11,11 @@ Documento para continuar o projeto em outra máquina.
 | --- | --- |
 | Site em produção | ✅ https://thiago.catiteo.com |
 | Repo | ✅ https://github.com/thiago-tap/pessoal |
-| Branch de deploy | `main` (push → GitHub Pages) |
+| Branch de trabalho / deploy | **`main` apenas** (push → GitHub Pages) |
 | Stack | Astro estático + CSS (dark/light) |
 | Idioma | PT-BR (EN ficou para depois) |
+
+> **Fluxo:** continue sempre em `main`. Não use feature branches para este site — o deploy de produção sai direto do `main`.
 
 ---
 
