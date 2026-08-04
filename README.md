@@ -31,19 +31,23 @@ npm run preview
 | `public/CNAME` | Domínio `thiago.catiteo.com` |
 | `.github/workflows/deploy.yml` | Deploy no GitHub Pages |
 
-## Fotos (`public/images/`)
+## Fotos e logos (`public/images/`)
 
 | Arquivo | Uso |
 | --- | --- |
 | `thiago-hero.jpg` | Hero |
 | `thiago-about.jpg` | Sobre (retrato) |
 | `thiago-familia.jpg` | Sobre (família) |
-| `projects/perfil-id.jpg` | Projeto perfil.id |
-| `projects/catiteo.jpg` | Projeto Catiteo |
-| `projects/azen.jpg` | Projeto AZEN CO. |
-| `projects/imav.jpg` | Projeto Instituto IMAV |
+| `projects/logos/perfil-id.svg` | Logo perfil.id |
+| `projects/logos/catiteo.png` | Logo Catiteo |
+| `projects/logos/azen.png` | Logo AZEN CO. |
+| `projects/logos/imav.png` | Logo Instituto IMAV (ícone; falta wordmark completa) |
 
-Ideal dos prints de projeto: **largura ≥ 1200px**, proporção **16:10**, topo da página visível. Substitua o arquivo mantendo o **mesmo nome**.
+Preferência: PNG/SVG com **fundo transparente**. Para logos com texto branco, o card já usa placa escura.
+
+## Continuar o projeto
+
+Ver o handoff completo: [`docs/HANDOFF.md`](docs/HANDOFF.md) (o que já foi feito + o que falta).
 
 ## Publicação (`thiago.catiteo.com`)
 
