@@ -26,6 +26,9 @@ Personal brand site for **Thiago Albuquerque de Paula** — full-stack developer
 - PT-BR default (`/`)
 - EN (`/en/`)
 
+## Projects order
+Featured highlight: **AZEN CO.** — then Perfil.id, Catiteo, Instituto IMAV.
+
 ## Anti-goals
 - Generic SaaS portfolio chrome
 - Infinite project lists / fake metrics

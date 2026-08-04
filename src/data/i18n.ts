@@ -398,7 +398,7 @@ export function getContent(locale: Locale) {
   const projectItems = siteBase.projectMeta.map((meta, index) => ({
     ...meta,
     description: copy.projects.items[index]?.description ?? '',
-    featured: index === 0,
+    featured: meta.name === 'AZEN CO.',
   }));
 
   const stackGroups = copy.stack.groups.map((group) => ({

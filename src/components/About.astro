@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { content } = Astro.props;
+const aboutParagraphs = [content.about.summaryHtml, ...content.about.paragraphsHtml];
 ---
 
 <section class="section about" id="sobre">
@@ -38,17 +39,14 @@ const { content } = Astro.props;
     </div>
 
     <div class="about-copy">
-      <div class="about-summary reveal" set:html={content.about.summaryHtml} />
-      <details class="about-more reveal reveal-delay-1">
-        <summary>{content.about.readMore}</summary>
-        <div class="about-extra">
-          {
-            content.about.paragraphsHtml.map((html) => (
-              <p set:html={html} />
-            ))
-          }
-        </div>
-      </details>
+      {
+        aboutParagraphs.map((html, index) => (
+          <p
+            class={`reveal${index < 4 ? ` reveal-delay-${index + 1}` : ''}`}
+            set:html={html}
+          />
+        ))
+      }
     </div>
   </div>
 </section>
@@ -121,69 +119,17 @@ const { content } = Astro.props;
 
   .about-copy {
     display: grid;
-    gap: 1rem;
-    max-width: 48rem;
-    align-content: start;
-  }
-
-  .about-summary {
-    margin: 0;
-    color: var(--text-muted);
-    font-size: 1.08rem;
-    line-height: 1.65;
-  }
-
-  .about-summary :global(strong) {
-    color: var(--text);
-    font-weight: 600;
-  }
-
-  .about-more summary {
-    cursor: pointer;
-    list-style: none;
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    color: var(--accent);
-    font-size: 0.92rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    user-select: none;
-  }
-
-  .about-more summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .about-more summary::after {
-    content: '';
-    width: 0.45rem;
-    height: 0.45rem;
-    margin-left: 0.55rem;
-    border-right: 1.5px solid currentColor;
-    border-bottom: 1.5px solid currentColor;
-    transform: rotate(45deg);
-    transition: transform 0.2s var(--ease);
-  }
-
-  .about-more[open] summary::after {
-    transform: rotate(-135deg);
-    margin-top: 0.2rem;
-  }
-
-  .about-extra {
-    display: grid;
     gap: 1.25rem;
-    margin-top: 0.85rem;
+    max-width: 48rem;
   }
 
-  .about-extra p {
+  .about-copy p {
     margin: 0;
     color: var(--text-muted);
     font-size: 1.05rem;
   }
 
-  .about-extra :global(strong) {
+  .about-copy :global(strong) {
     color: var(--text);
     font-weight: 600;
   }
