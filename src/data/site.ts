@@ -10,7 +10,7 @@ export const site = {
   email: 'thiago@catiteo.com',
   tagline: 'Desenvolvedor Full-Stack · Games & tech · Cristão · Família',
   heroSupport:
-    'Full-stack em Brasília. Sistemas críticos no dia a dia, produtos próprios com propósito — e uma vida ancorada em Deus e na família.',
+    'Full-stack em Brasília. Sistemas que não podem falhar no trabalho; produtos próprios com propósito — e uma vida ancorada em Deus e na família.',
   photos: {
     hero: '/images/thiago-hero.jpg',
     about: '/images/thiago-about.jpg',
@@ -99,7 +99,7 @@ export const site = {
     {
       name: 'Perfil.id',
       description:
-        'Perfis na internet mais profissionais (e menos genéricos) para pessoas e pequenos negócios — com qualidade de produto e preço acessível.',
+        'Chega de página genérica. Perfis profissionais para pessoas e pequenos negócios — visual cuidado, narrativa clara e preço que não assusta.',
       href: 'https://perfil.id/',
       image: '/images/projects/logos/perfil-id.svg',
       logoVariant: 'wide' as const,
@@ -107,7 +107,7 @@ export const site = {
     {
       name: 'Catiteo',
       description:
-        'Serviço de extrema qualidade para quem quer algo a mais na internet: sites complexos e sistemas sob medida.',
+        'Quando template não resolve: sites complexos e sistemas sob medida, com acabamento de quem vai conviver com o resultado no ar.',
       href: 'https://catiteo.com/',
       image: '/images/projects/logos/catiteo.png',
       logoVariant: 'wide' as const,
@@ -115,7 +115,7 @@ export const site = {
     {
       name: 'AZEN CO.',
       description:
-        'Marca de roupa com propósito: identidade, intenção e fé — minimalismo e autenticidade num mundo de ruído.',
+        'Roupa com direção — identidade, intenção e fé. Minimalismo e autenticidade para quem cansou do ruído das marcas vazias.',
       href: 'https://www.azenco.com.br/',
       image: '/images/projects/logos/azen.png',
       logoVariant: 'wide' as const,
@@ -123,10 +123,10 @@ export const site = {
     {
       name: 'Instituto IMAV',
       description:
-        'Presença digital institucional com visual cuidado e foco em clareza — um dos trabalhos entregues para cliente.',
+        'Presença digital institucional alinhada à missão da organização: clareza, credibilidade e um visual que sustenta confiança — entrega real para cliente.',
       href: 'https://institutoimav.com.br/',
       image: '/images/projects/logos/imav.png',
-      /** Marca quadrada: precisa de escala maior para empatar com as wordmarks */
+      /** Marca circular: escala própria para empatar com as wordmarks */
       logoVariant: 'mark' as const,
     },
   ],

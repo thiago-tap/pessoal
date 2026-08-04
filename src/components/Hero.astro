@@ -197,13 +197,49 @@ import SocialLinks from './SocialLinks.astro';
       align-items: center;
     }
 
+    /* Retrato em viewport larga: restringe a foto à direita para não “dar zoom” no rosto */
+    .hero-media {
+      left: 36%;
+      right: 0;
+      width: auto;
+    }
+
     .hero-media img {
-      object-position: 55% 0%;
+      object-position: 58% 10%;
+    }
+
+    .hero-overlay {
+      background: linear-gradient(
+        90deg,
+        rgba(11, 11, 12, 0.97) 0%,
+        rgba(11, 11, 12, 0.9) 34%,
+        rgba(11, 11, 12, 0.45) 62%,
+        rgba(11, 11, 12, 0.2) 100%
+      );
+    }
+
+    :global([data-theme='light']) .hero-overlay {
+      background: linear-gradient(
+        90deg,
+        rgba(247, 242, 234, 0.97) 0%,
+        rgba(247, 242, 234, 0.88) 34%,
+        rgba(247, 242, 234, 0.4) 62%,
+        rgba(247, 242, 234, 0.16) 100%
+      );
     }
 
     .hero-content {
       margin-right: auto;
       max-width: min(44rem, 52vw);
+    }
+
+    @keyframes heroZoom {
+      from {
+        transform: scale(1.04);
+      }
+      to {
+        transform: scale(1);
+      }
     }
   }
 
