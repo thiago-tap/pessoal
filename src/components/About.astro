@@ -16,22 +16,48 @@ const { content } = Astro.props;
       <p class="section-lead">{content.about.lead}</p>
       <div class="about-photos">
         <figure class="about-photo">
-          <img
-            src={content.photos.about}
-            alt={content.about.photoAlt}
-            width="640"
-            height="800"
-            loading="lazy"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcset={content.photos.aboutSrcset.webp}
+              sizes="(min-width: 900px) 280px, 45vw"
+            />
+            <source
+              type="image/jpeg"
+              srcset={content.photos.aboutSrcset.jpeg}
+              sizes="(min-width: 900px) 280px, 45vw"
+            />
+            <img
+              src={content.photos.about}
+              alt={content.about.photoAlt}
+              width="640"
+              height="800"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </figure>
         <figure class="about-photo about-photo--wide">
-          <img
-            src={content.photos.family}
-            alt={content.about.familyAlt}
-            width="960"
-            height="640"
-            loading="lazy"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcset={content.photos.familySrcset.webp}
+              sizes="(min-width: 900px) 320px, 90vw"
+            />
+            <source
+              type="image/jpeg"
+              srcset={content.photos.familySrcset.jpeg}
+              sizes="(min-width: 900px) 320px, 90vw"
+            />
+            <img
+              src={content.photos.family}
+              alt={content.about.familyAlt}
+              width="960"
+              height="640"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <figcaption>{content.about.familyCaption}</figcaption>
         </figure>
       </div>
@@ -93,6 +119,10 @@ const { content } = Astro.props;
     overflow: hidden;
     border: 1px solid var(--border);
     background: var(--bg-elevated);
+  }
+
+  .about-photo picture {
+    display: contents;
   }
 
   .about-photo img {

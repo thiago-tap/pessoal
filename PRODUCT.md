@@ -34,6 +34,13 @@ Featured highlight: **AZEN CO.** — then Perfil.id, Catiteo, Instituto IMAV.
 - Hero social strip: WhatsApp, Instagram, LinkedIn, GitHub only; full set lives in Contact.
 - Optional future asset: drop a real AZEN product photo at `public/images/projects/azen-feature.jpg` and wire it into the featured media plate when available.
 
+## Performance
+- Fonts are **self-hosted** (`public/fonts/`, Newsreader + Sora variable woff2). No Google Fonts.
+- CSS is **inlined** at build (`inlineStylesheets: 'always'`) to avoid a render-blocking stylesheet.
+- Photos ship as responsive **WebP + JPEG** (`srcset`); regenerate with `npm run optimize:images` (keep masters in `public/images/source/` when re-exporting).
+- `public/llms.txt` supports PageSpeed Agentic Browsing (optional third applicable audit).
+- **Cache TTL:** GitHub Pages serves `max-age=600`. Long-lived cache needs a CDN (e.g. Cloudflare) in front of the custom domain — not fixable in the Astro repo alone.
+
 ## Anti-goals
 - Generic SaaS portfolio chrome
 - Infinite project lists / fake metrics

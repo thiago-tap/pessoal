@@ -1,0 +1,25 @@
+# Thiago Albuquerque de Paula
+
+> Full-stack developer in Brasília (DF), Brazil. Builds mission-critical systems at work and purpose-driven products of his own. Site: https://thiago.catiteo.com/
+
+Thiago Albuquerque de Paula is a full-stack developer based in Brasília. He works on large corporate applications and APIs in high-criticality environments (Java, Quarkus, Spring, Angular) and ships his own products end to end. Faith and family sit at the center of how he chooses what to build.
+
+## Primary
+
+- [Home (Portuguese)](https://thiago.catiteo.com/): Personal site — about, journey, projects, stack, contact
+- [Home (English)](https://thiago.catiteo.com/en/): English version of the same site
+- [WhatsApp](https://wa.me/5561992401116): Preferred direct contact
+
+## Projects
+
+- [AZEN CO.](https://www.azenco.com.br/): Apparel brand with identity, intention, and faith
+- [Perfil.id](https://perfil.id/): Professional profile pages for people and small businesses
+- [Catiteo](https://catiteo.com/): Custom sites and systems
+- [Instituto IMAV](https://institutoimav.com.br/): Institutional site (client delivery)
+
+## Optional
+
+- [LinkedIn](https://www.linkedin.com/in/thiago-albuquerque-de-paula/)
+- [GitHub](https://github.com/thiago-tap)
+- [Instagram](https://www.instagram.com/thiagaotap/)
+- [Email](mailto:thiago@catiteo.com)

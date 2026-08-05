@@ -18,11 +18,12 @@ Mode: **Experience + Persuade**. Density: medium-low. Motion: purposeful, sparse
 Logo plates for marks with white ink stay near `#0c0c0e` even in light theme when needed for legibility; prefer theme-tinted plates when the logo is dark/colorful.
 
 ## Typography
-- Display: **Newsreader** (serif) — hero name, section titles, project names
-- Body: **Sora** — UI, paragraphs, labels
+- Display: **Newsreader** (serif, self-hosted variable woff2) — hero name, section titles, project names
+- Body: **Sora** (self-hosted variable woff2) — UI, paragraphs, labels
 - Labels: uppercase, tracked (`~0.14–0.2em`), accent color
 - Display tracking: slightly negative on large titles
 - Body measure: keep about copy under ~65ch where possible
+- Do not load Google Fonts — keep latin (+ latin-ext) files under `public/fonts/`
 
 ## Components
 - **Buttons:** primary = solid accent on dark ink text; ghost = hairline border. Min height 48px. Soft radius `2px` (not pills). Hover: slight lift + stronger accent.

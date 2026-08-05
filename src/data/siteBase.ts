@@ -10,6 +10,23 @@ export const siteBase = {
     heroDesktop: '/images/thiago-hero-desktop.jpg',
     about: '/images/thiago-about.jpg',
     family: '/images/thiago-familia.jpg',
+    /** Responsive WebP/JPEG sets for <picture> (LCP / weight). */
+    heroMobileSrcset: {
+      webp: '/images/thiago-hero-640.webp 640w, /images/thiago-hero-960.webp 960w, /images/thiago-hero-1200.webp 1200w',
+      jpeg: '/images/thiago-hero-640.jpg 640w, /images/thiago-hero-960.jpg 960w, /images/thiago-hero-1200.jpg 1200w',
+    },
+    heroDesktopSrcset: {
+      webp: '/images/thiago-hero-desktop-1200.webp 1200w, /images/thiago-hero-desktop-1600.webp 1600w, /images/thiago-hero-desktop-2000.webp 2000w',
+      jpeg: '/images/thiago-hero-desktop-1200.jpg 1200w, /images/thiago-hero-desktop-1600.jpg 1600w, /images/thiago-hero-desktop-2000.jpg 2000w',
+    },
+    aboutSrcset: {
+      webp: '/images/thiago-about-320.webp 320w, /images/thiago-about-480.webp 480w, /images/thiago-about-640.webp 640w',
+      jpeg: '/images/thiago-about-320.jpg 320w, /images/thiago-about-480.jpg 480w, /images/thiago-about-640.jpg 640w',
+    },
+    familySrcset: {
+      webp: '/images/thiago-familia-480.webp 480w, /images/thiago-familia-720.webp 720w, /images/thiago-familia-960.webp 960w',
+      jpeg: '/images/thiago-familia-480.jpg 480w, /images/thiago-familia-720.jpg 720w, /images/thiago-familia-960.jpg 960w',
+    },
   },
   socialHrefs: {
     instagram: 'https://www.instagram.com/thiagaotap/',

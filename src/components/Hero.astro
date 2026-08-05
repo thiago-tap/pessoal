@@ -14,7 +14,28 @@ const whatsappIcon =
 <section class="hero" id="topo">
   <div class="hero-media" aria-hidden="true">
     <picture>
-      <source media="(min-width: 900px)" srcset={content.photos.heroDesktop} />
+      <source
+        media="(min-width: 900px)"
+        type="image/webp"
+        srcset={content.photos.heroDesktopSrcset.webp}
+        sizes="100vw"
+      />
+      <source
+        media="(min-width: 900px)"
+        type="image/jpeg"
+        srcset={content.photos.heroDesktopSrcset.jpeg}
+        sizes="100vw"
+      />
+      <source
+        type="image/webp"
+        srcset={content.photos.heroMobileSrcset.webp}
+        sizes="100vw"
+      />
+      <source
+        type="image/jpeg"
+        srcset={content.photos.heroMobileSrcset.jpeg}
+        sizes="100vw"
+      />
       <img
         src={content.photos.hero}
         alt={content.about.photoAlt}

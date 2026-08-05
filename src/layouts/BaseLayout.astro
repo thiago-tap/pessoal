@@ -30,6 +30,8 @@ const personJsonLd = {
     content.socialHrefs.x,
   ],
 };
+
+const ogImage = `${content.url}/og.jpg`;
 ---
 
 <!doctype html>
@@ -44,23 +46,50 @@ const personJsonLd = {
     <link rel="alternate" hreflang="pt-BR" href={`${content.url}/`} />
     <link rel="alternate" hreflang="en" href={`${content.url}/en/`} />
     <link rel="alternate" hreflang="x-default" href={`${content.url}/`} />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={content.canonical} />
     <meta property="og:title" content={content.title} />
     <meta property="og:description" content={content.description} />
-    <meta property="og:image" content={`${content.url}/og.png`} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content={content.ogLocale} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={content.title} />
     <meta name="twitter:description" content={content.description} />
-    <meta name="twitter:image" content={`${content.url}/og.png`} />
+    <meta name="twitter:image" content={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Critical self-hosted fonts (latin); latin-ext loads via unicode-range when needed -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Sora:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/newsreader-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/sora-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <!-- LCP hero: preload WebP for mobile / desktop breakpoints -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/thiago-hero-960.webp"
+      type="image/webp"
+      media="(max-width: 899px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/thiago-hero-desktop-1600.webp"
+      type="image/webp"
+      media="(min-width: 900px)"
+      fetchpriority="high"
     />
     <script is:inline>
       (() => {
