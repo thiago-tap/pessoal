@@ -148,6 +148,7 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.55rem;
   min-height: 48px;
   padding: 0.75rem 1.35rem;
   border-radius: var(--radius-control);
@@ -184,6 +185,19 @@ button {
 .btn-ghost:hover {
   transform: translateY(-2px);
   border-color: var(--accent);
+}
+
+.btn:active,
+.btn-primary:active,
+.btn-ghost:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: none;
+}
+
+.btn-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
 }
 
 .reveal {

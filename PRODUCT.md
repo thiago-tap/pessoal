@@ -29,6 +29,11 @@ Personal brand site for **Thiago Albuquerque de Paula** — full-stack developer
 ## Projects order
 Featured highlight: **AZEN CO.** — then Perfil.id, Catiteo, Instituto IMAV.
 
+## Content notes
+- Hero CTA must name WhatsApp explicitly (PT + EN).
+- Hero social strip: WhatsApp, Instagram, LinkedIn, GitHub only; full set lives in Contact.
+- Optional future asset: drop a real AZEN product photo at `public/images/projects/azen-feature.jpg` and wire it into the featured media plate when available.
+
 ## Anti-goals
 - Generic SaaS portfolio chrome
 - Infinite project lists / fake metrics

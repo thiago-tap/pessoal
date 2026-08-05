@@ -6,7 +6,6 @@ interface Props {
 }
 
 const { content } = Astro.props;
-const aboutParagraphs = [content.about.summaryHtml, ...content.about.paragraphsHtml];
 ---
 
 <section class="section about" id="sobre">
@@ -39,12 +38,16 @@ const aboutParagraphs = [content.about.summaryHtml, ...content.about.paragraphsH
     </div>
 
     <div class="about-copy">
+      <p class="about-summary reveal" set:html={content.about.summaryHtml} />
+      <blockquote class="about-quote reveal reveal-delay-1">
+        <p>{content.about.pullQuote}</p>
+      </blockquote>
       {
-        aboutParagraphs.map((html, index) => (
-          <p
-            class={`reveal${index < 4 ? ` reveal-delay-${index + 1}` : ''}`}
-            set:html={html}
-          />
+        content.about.sections.map((section, index) => (
+          <section class={`about-block reveal${index < 3 ? ` reveal-delay-${index + 2}` : ''}`}>
+            <h3>{section.heading}</h3>
+            <p set:html={section.html} />
+          </section>
         ))
       }
     </div>
@@ -119,14 +122,46 @@ const aboutParagraphs = [content.about.summaryHtml, ...content.about.paragraphsH
 
   .about-copy {
     display: grid;
-    gap: 1.25rem;
-    max-width: 48rem;
+    gap: 1.45rem;
+    max-width: 42rem;
   }
 
-  .about-copy p {
+  .about-summary,
+  .about-block p {
     margin: 0;
     color: var(--text-muted);
     font-size: 1.05rem;
+  }
+
+  .about-summary {
+    font-size: 1.08rem;
+    line-height: 1.65;
+  }
+
+  .about-quote {
+    margin: 0.15rem 0;
+    padding: 0.35rem 0 0.35rem 1.1rem;
+    border-left: 2px solid var(--accent);
+  }
+
+  .about-quote p {
+    margin: 0;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+  }
+
+  .about-block h3 {
+    margin: 0 0 0.45rem;
+    color: var(--accent);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
 
   .about-copy :global(strong) {

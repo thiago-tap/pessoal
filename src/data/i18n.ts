@@ -2,6 +2,7 @@ import { siteBase, type Locale } from './siteBase';
 
 type Milestone = { year: string; title: string; detail: string };
 type ProjectCopy = { description: string };
+type AboutSection = { heading: string; html: string };
 
 type ContentBundle = {
   locale: Locale;
@@ -34,16 +35,17 @@ type ContentBundle = {
     familyCaption: string;
     photoAlt: string;
     familyAlt: string;
-    readMore: string;
+    pullQuote: string;
     /** Short scan summary — rendered with set:html */
     summaryHtml: string;
-    /** Trusted site copy — rendered with set:html */
-    paragraphsHtml: string[];
+    sections: AboutSection[];
   };
   timeline: {
     label: string;
     title: string;
     lead: string;
+    asideQuote: string;
+    asideNote: string;
     milestones: Milestone[];
   };
   projects: {
@@ -51,6 +53,7 @@ type ContentBundle = {
     title: string;
     lead: string;
     visit: string;
+    featuredKicker: string;
     items: ProjectCopy[];
   };
   stack: {
@@ -65,6 +68,7 @@ type ContentBundle = {
     lead: string;
     whatsappCta: string;
     emailLabel: string;
+    networksLabel: string;
     footerNavAria: string;
     whatsappMessage: string;
   };
@@ -83,11 +87,11 @@ const pt: ContentBundle = {
   title: 'Thiago — Desenvolvedor Full-Stack',
   description:
     'Desenvolvedor Full-Stack em Brasília. Sistemas críticos, produtos próprios com propósito — vida ancorada em Deus e na família.',
-  tagline: 'Desenvolvedor Full-Stack · Games & tech · Cristão · Família',
+  tagline: 'Full-Stack em Brasília · fé e família',
   heroSupport:
-    'Full-stack em Brasília. Sistemas que não podem falhar no trabalho; produtos próprios com propósito — e uma vida ancorada em Deus e na família.',
+    'Sistemas que não podem falhar no trabalho; produtos próprios com propósito — e uma vida ancorada em Deus e na família.',
   heroKicker: 'Brasília · Full-Stack',
-  heroCtaPrimary: 'Vamos conversar',
+  heroCtaPrimary: 'Vamos conversar no WhatsApp',
   heroCtaSecondary: 'Instagram',
   heroCtaAbout: 'Ver sobre ↓',
   skipLink: 'Ir para o conteúdo',
@@ -112,20 +116,37 @@ const pt: ContentBundle = {
     familyCaption: 'Deus e a família no centro',
     photoAlt: 'Thiago Albuquerque de Paula',
     familyAlt: 'Thiago e Thais Mara',
-    readMore: 'Continuar lendo',
+    pullQuote: 'Tecnologia, para mim, é ferramenta para servir pessoas — não um fim em si.',
     summaryHtml: `Sou <strong>${siteBase.fullName}</strong>, tenho <strong><span data-age></span> anos</strong>, vivo em <strong>${siteBase.location}</strong> e trabalho full-stack em ambientes de <strong>alta criticidade</strong>. Casado com <strong>Thais Mara</strong> — <strong>Deus e a família</strong> filtram o que vale construir. Se você busca técnica séria com conversa direta, estamos falando a mesma língua.`,
-    paragraphsHtml: [
-      `Sou cristão, com fé em Deus e uma paixão genuína por <strong>Jesus Cristo</strong>. Isso muda o jeito de trabalhar: prazo sem enrolação, qualidade sem teatro, segurança sem atalho. Tecnologia, para mim, é ferramenta para <strong>servir pessoas</strong> — não um fim em si. Quero ser alguém mais íntegro e útil a cada ano; o código é só um dos lugares onde isso aparece.`,
-      `O que me prende na área é enxergar o sistema inteiro: legado que precisa viver, API que não pode cair, tela que alguém usa sob pressão. Gosto de modernizar sem quebrar o que já funciona, cuidar de performance e entregar interface que a pessoa entende sem manual. Fora do teclado, a mesma curiosidade vira <strong>jogos de tabuleiro</strong> e <strong>game digitais</strong> — regras, sistemas, convivência. Nerd assumido, com método.`,
-      `No dia a dia profissional, na <strong>Minsait/Indra</strong>, participo de projetos corporativos de grande porte: aplicações e APIs em que estabilidade, segurança e qualidade de código são o trabalho, não o slide. Backend robusto (Java, Quarkus, Spring) + frontend cuidadoso (Angular e o ecossistema web), com testes e evolução contínua — o tipo de entrega que só aparece quando o sistema está no ar e ninguém percebe.`,
-      `Fora do expediente, construo produto de ponta a ponta. O <strong>Perfil.id</strong> nasceu da frustração com perfis genéricos: pessoas e pequenos negócios merecem presença online profissional <strong>sem preço de agência</strong>. A <strong>Catiteo</strong> é o braço para quem precisa de mais — site complexo, sistema sob medida, acabamento de quem vai assinar o resultado. A <strong>AZEN CO.</strong> é outra frente: marca de roupa com identidade, intenção e fé — minimalismo e autenticidade num mercado barulhento. Cada um desses projetos existe porque resolve uma dor real, não porque “ficava bonito no portfólio”.`,
-      `É isso que ofereço: produto bem feito, conversa direta e trabalho que respeita quem vai usar — e quem vai viver com as consequências do que foi entregue.`,
+    sections: [
+      {
+        heading: 'Fé e ofício',
+        html: `Sou cristão, com fé em Deus e uma paixão genuína por <strong>Jesus Cristo</strong>. Isso muda o jeito de trabalhar: prazo sem enrolação, qualidade sem teatro, segurança sem atalho. Quero ser alguém mais íntegro e útil a cada ano; o código é só um dos lugares onde isso aparece.`,
+      },
+      {
+        heading: 'Sistemas de ponta a ponta',
+        html: `O que me prende na área é enxergar o sistema inteiro: legado que precisa viver, API que não pode cair, tela que alguém usa sob pressão. Gosto de modernizar sem quebrar o que já funciona, cuidar de performance e entregar interface que a pessoa entende sem manual. Fora do teclado, a mesma curiosidade vira <strong>jogos de tabuleiro</strong> e <strong>games digitais</strong> — regras, sistemas, convivência.`,
+      },
+      {
+        heading: 'No trabalho',
+        html: `Na <strong>Minsait/Indra</strong>, participo de projetos corporativos de grande porte: aplicações e APIs em que estabilidade, segurança e qualidade de código são o trabalho, não o slide. Backend robusto (Java, Quarkus, Spring) + frontend cuidadoso (Angular e o ecossistema web), com testes e evolução contínua.`,
+      },
+      {
+        heading: 'Produtos próprios',
+        html: `Fora do expediente, construo produto de ponta a ponta. O <strong>Perfil.id</strong> nasceu da frustração com perfis genéricos. A <strong>Catiteo</strong> é o braço para sites e sistemas sob medida. A <strong>AZEN CO.</strong> é marca de roupa com identidade, intenção e fé. Cada projeto existe porque resolve uma dor real — não porque “ficava bonito no portfólio”.`,
+      },
+      {
+        heading: 'O que ofereço',
+        html: `Produto bem feito, conversa direta e trabalho que respeita quem vai usar — e quem vai viver com as consequências do que foi entregue.`,
+      },
     ],
   },
   timeline: {
     label: 'Trajetória',
     title: 'Marcos que contam a história',
     lead: 'Do Java corporativo aos sistemas críticos — e aos negócios construídos em paralelo.',
+    asideQuote: 'Estabilidade, segurança e qualidade de código são o trabalho — não o slide.',
+    asideNote: 'Uma linha do tempo curta. O que importa é o que ainda está no ar.',
     milestones: [
       {
         year: '2010',
@@ -163,6 +184,7 @@ const pt: ContentBundle = {
     title: 'Trabalho com cara e propósito',
     lead: 'Produtos próprios e entrega para cliente — cada um com problema claro, não uma lista para impressionar.',
     visit: 'Visitar',
+    featuredKicker: 'Marca em destaque',
     items: [
       {
         description:
@@ -212,9 +234,10 @@ const pt: ContentBundle = {
   contact: {
     label: 'Contato',
     title: 'Vamos conversar',
-    lead: 'Prefere conversar direto? Chama no WhatsApp — as outras redes estão a um clique.',
+    lead: 'Prefere conversar direto? Chama no WhatsApp — as outras redes estão abaixo.',
     whatsappCta: 'Conversar no WhatsApp',
     emailLabel: 'E-mail',
+    networksLabel: 'Outras redes',
     footerNavAria: 'Rodapé',
     whatsappMessage: 'Olá Thiago! Vi seu site e gostaria de conversar.',
   },
@@ -233,11 +256,11 @@ const en: ContentBundle = {
   title: 'Thiago — Full-Stack Developer',
   description:
     'Full-stack developer in Brasília. Mission-critical systems, purpose-driven products — a life anchored in God and family.',
-  tagline: 'Full-Stack Developer · Games & tech · Christian · Family',
+  tagline: 'Full-Stack in Brasília · faith and family',
   heroSupport:
-    'Full-stack in Brasília. Systems that cannot fail at work; purpose-driven products of my own — and a life anchored in God and family.',
+    'Systems that cannot fail at work; purpose-driven products of my own — and a life anchored in God and family.',
   heroKicker: 'Brasília · Full-Stack',
-  heroCtaPrimary: "Let's talk",
+  heroCtaPrimary: "Let's talk on WhatsApp",
   heroCtaSecondary: 'Instagram',
   heroCtaAbout: 'About me ↓',
   skipLink: 'Skip to content',
@@ -262,20 +285,37 @@ const en: ContentBundle = {
     familyCaption: 'God and family at the center',
     photoAlt: 'Thiago Albuquerque de Paula',
     familyAlt: 'Thiago and Thais Mara',
-    readMore: 'Keep reading',
+    pullQuote: 'Technology, for me, is a tool to serve people — not an end in itself.',
     summaryHtml: `I'm <strong>${siteBase.fullName}</strong>, <strong><span data-age></span> years old</strong>, based in <strong>${siteBase.location}</strong>, building full-stack software in <strong>high-criticality</strong> environments. Married to <strong>Thais Mara</strong> — <strong>God and family</strong> filter what is worth building. If you want serious craft and a direct conversation, we are speaking the same language.`,
-    paragraphsHtml: [
-      `I'm a Christian, with faith in God and a genuine love for <strong>Jesus Christ</strong>. That changes how I work: deadlines without excuses, quality without theater, security without shortcuts. Technology, for me, is a tool to <strong>serve people</strong> — not an end in itself. I want to become more integral and useful every year; code is just one place that shows up.`,
-      `What keeps me in this field is seeing the whole system: legacy that must keep running, APIs that cannot go down, screens people use under pressure. I like modernizing without breaking what already works, caring about performance, and shipping interfaces people understand without a manual. Away from the keyboard, the same curiosity becomes <strong>board games</strong> and <strong>digital games</strong> — rules, systems, fellowship. An unapologetic nerd, with method.`,
-      `Day to day at <strong>Minsait/Indra</strong>, I contribute to large corporate projects: applications and APIs where stability, security, and code quality are the job — not the slide deck. Solid backend (Java, Quarkus, Spring) + careful frontend (Angular and the web stack), with tests and continuous evolution — the kind of delivery you notice when the system stays up and nobody has to panic.`,
-      `Outside work hours, I build product end to end. <strong>Perfil.id</strong> came from frustration with generic profiles: people and small businesses deserve a professional online presence <strong>without agency pricing</strong>. <strong>Catiteo</strong> is the arm for when you need more — complex sites, custom systems, finish from someone who will stand behind the result. <strong>AZEN CO.</strong> is another front: an apparel brand with identity, intention, and faith — minimalism and authenticity in a noisy market. Each project exists because it solves a real pain, not because it “looked good in a portfolio”.`,
-      `That is what I offer: well-made product, direct conversation, and work that respects the people who will use it — and live with what was shipped.`,
+    sections: [
+      {
+        heading: 'Faith and craft',
+        html: `I'm a Christian, with faith in God and a genuine love for <strong>Jesus Christ</strong>. That changes how I work: deadlines without excuses, quality without theater, security without shortcuts. I want to become more integral and useful every year; code is just one place that shows up.`,
+      },
+      {
+        heading: 'End-to-end systems',
+        html: `What keeps me in this field is seeing the whole system: legacy that must keep running, APIs that cannot go down, screens people use under pressure. I like modernizing without breaking what already works, caring about performance, and shipping interfaces people understand without a manual. Away from the keyboard, the same curiosity becomes <strong>board games</strong> and <strong>digital games</strong>.`,
+      },
+      {
+        heading: 'At work',
+        html: `At <strong>Minsait/Indra</strong>, I contribute to large corporate projects: applications and APIs where stability, security, and code quality are the job — not the slide deck. Solid backend (Java, Quarkus, Spring) + careful frontend (Angular and the web stack), with tests and continuous evolution.`,
+      },
+      {
+        heading: 'Own products',
+        html: `Outside work hours, I build product end to end. <strong>Perfil.id</strong> came from frustration with generic profiles. <strong>Catiteo</strong> covers complex sites and custom systems. <strong>AZEN CO.</strong> is an apparel brand with identity, intention, and faith. Each project exists because it solves a real pain — not because it “looked good in a portfolio”.`,
+      },
+      {
+        heading: 'What I offer',
+        html: `Well-made product, direct conversation, and work that respects the people who will use it — and live with what was shipped.`,
+      },
     ],
   },
   timeline: {
     label: 'Journey',
     title: 'Milestones that tell the story',
     lead: 'From corporate Java to critical systems — and businesses built in parallel.',
+    asideQuote: 'Stability, security, and code quality are the job — not the slide deck.',
+    asideNote: 'A short timeline. What matters is what is still running in production.',
     milestones: [
       {
         year: '2010',
@@ -313,6 +353,7 @@ const en: ContentBundle = {
     title: 'Work with character and purpose',
     lead: 'Own products and client delivery — each with a clear problem, not a vanity list.',
     visit: 'Visit',
+    featuredKicker: 'Featured brand',
     items: [
       {
         description:
@@ -362,9 +403,10 @@ const en: ContentBundle = {
   contact: {
     label: 'Contact',
     title: "Let's talk",
-    lead: 'Prefer a direct conversation? Message me on WhatsApp — the other networks are one click away.',
+    lead: 'Prefer a direct conversation? Message me on WhatsApp — the other networks are below.',
     whatsappCta: 'Chat on WhatsApp',
     emailLabel: 'Email',
+    networksLabel: 'Other networks',
     footerNavAria: 'Footer',
     whatsappMessage: 'Hi Thiago! I saw your site and would like to talk.',
   },
@@ -381,18 +423,23 @@ export function getContent(locale: Locale) {
   const copy = bundles[locale];
   const whatsappHref = `${siteBase.socialHrefs.whatsappBase}?text=${encodeURIComponent(copy.contact.whatsappMessage)}`;
 
+  const allLinks = [
+    { id: 'whatsapp' as const, label: 'WhatsApp', href: whatsappHref },
+    { id: 'instagram' as const, label: 'Instagram', href: siteBase.socialHrefs.instagram },
+    { id: 'linkedin' as const, label: 'LinkedIn', href: siteBase.socialHrefs.linkedin },
+    { id: 'github' as const, label: 'GitHub', href: siteBase.socialHrefs.github },
+    { id: 'telegram' as const, label: 'Telegram', href: siteBase.socialHrefs.telegram },
+    { id: 'x' as const, label: 'X', href: siteBase.socialHrefs.x },
+    { id: 'email' as const, label: copy.contact.emailLabel, href: siteBase.socialHrefs.email },
+  ];
+
+  const heroLinkIds = new Set(['whatsapp', 'instagram', 'linkedin', 'github']);
+
   const social = {
     primary: { label: copy.heroCtaSecondary, href: siteBase.socialHrefs.instagram },
     contact: { label: 'WhatsApp', href: whatsappHref },
-    links: [
-      { id: 'whatsapp' as const, label: 'WhatsApp', href: whatsappHref },
-      { id: 'instagram' as const, label: 'Instagram', href: siteBase.socialHrefs.instagram },
-      { id: 'linkedin' as const, label: 'LinkedIn', href: siteBase.socialHrefs.linkedin },
-      { id: 'github' as const, label: 'GitHub', href: siteBase.socialHrefs.github },
-      { id: 'telegram' as const, label: 'Telegram', href: siteBase.socialHrefs.telegram },
-      { id: 'x' as const, label: 'X', href: siteBase.socialHrefs.x },
-      { id: 'email' as const, label: copy.contact.emailLabel, href: siteBase.socialHrefs.email },
-    ],
+    heroLinks: allLinks.filter((link) => heroLinkIds.has(link.id)),
+    links: allLinks,
   };
 
   const projectItems = siteBase.projectMeta.map((meta, index) => ({

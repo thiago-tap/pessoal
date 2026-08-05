@@ -27,7 +27,9 @@ Logo plates for marks with white ink stay near `#0c0c0e` even in light theme whe
 ## Components
 - **Buttons:** primary = solid accent on dark ink text; ghost = hairline border. Min height 48px. Soft radius `2px` (not pills). Hover: slight lift + stronger accent.
 - **Social icons:** min 44×44 hit target, hairline border, lift on hover.
-- **Project rows:** editorial list — **AZEN CO.** featured/full-bleed plate; others compact. Interaction container, not decorative card clutter.
+- **Project rows:** editorial list — **AZEN CO.** featured/full-bleed plate; others as horizontal editorial rows (not a 3-equal card grid). Unified dark logo plates in light mode. Interaction container, not decorative card clutter.
+- **About:** pull quote + short uppercase subheads; full copy always visible (no collapse that creates empty gaps).
+- **Hero socials:** 4 icons in a stable grid; no orphan wrap.
 - **Nav:** sticky, frosted; active section uses accent underline/color.
 
 ## Layout principles
