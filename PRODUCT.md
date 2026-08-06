@@ -41,6 +41,12 @@ Featured highlight: **AZEN CO.** — then Perfil.id, Catiteo, Instituto IMAV.
 - `public/llms.txt` supports PageSpeed Agentic Browsing (optional third applicable audit).
 - **Cache TTL:** GitHub Pages serves `max-age=600`. Long-lived cache needs a CDN (e.g. Cloudflare) in front of the custom domain — not fixable in the Astro repo alone.
 
+## Analytics
+- **GTM:** `GTM-NW9SMKQV` (head + noscript; boots after `window.load` to protect LCP)
+- **GA4:** `G-P8DWQEWLPE` via gtag (also after load; `anonymize_ip`)
+- Custom events: `whatsapp_click` (placement: hero/contact/footer/social), `project_click` (project_name)
+- **Important:** If GA4 is *also* configured as a tag inside GTM that sends page_view, you will double-count. Prefer one path: either GA4 only via GTM **or** keep the site gtag and do not add a duplicate GA4 Config tag in GTM.
+
 ## Anti-goals
 - Generic SaaS portfolio chrome
 - Infinite project lists / fake metrics

@@ -42,7 +42,6 @@ const { content } = Astro.props;
   }
 
   .stack-group {
-    min-height: 11.5rem;
     display: grid;
     align-content: start;
   }
@@ -96,6 +95,12 @@ const { content } = Astro.props;
     .stack-grid {
       grid-template-columns: 1fr 1fr;
       gap: 2rem 2.5rem;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .stack-grid {
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 </style>
