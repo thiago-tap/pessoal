@@ -91,16 +91,21 @@ const { content } = Astro.props;
     transform: translateY(-2px);
   }
 
+  :global([data-theme='light']) .stack-group li {
+    background: var(--bg);
+    border-color: rgba(26, 24, 20, 0.18);
+    color: var(--text);
+  }
+
+  :global([data-theme='light']) .stack-group li:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+    background: var(--accent-soft);
+  }
+
   @media (min-width: 800px) {
     .stack-grid {
       grid-template-columns: 1fr 1fr;
       gap: 2rem 2.5rem;
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .stack-grid {
-      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 </style>

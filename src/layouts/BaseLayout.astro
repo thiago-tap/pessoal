@@ -1,5 +1,6 @@
 ---
 import type { SiteContent } from '../data/i18n';
+import CookieBanner from '../components/CookieBanner.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -61,7 +62,6 @@ const GA_MEASUREMENT_ID = 'G-P8DWQEWLPE';
     <meta name="twitter:description" content={content.description} />
     <meta name="twitter:image" content={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
-    <!-- Critical self-hosted fonts (latin); latin-ext loads via unicode-range when needed -->
     <link
       rel="preload"
       href="/fonts/newsreader-latin-wght-normal.woff2"
@@ -76,11 +76,11 @@ const GA_MEASUREMENT_ID = 'G-P8DWQEWLPE';
       type="font/woff2"
       crossorigin
     />
-    <!-- LCP hero: preload WebP for mobile / desktop breakpoints -->
+    <!-- Prefer smaller hero on mobile for LCP; desktop keeps wide crop -->
     <link
       rel="preload"
       as="image"
-      href="/images/thiago-hero-960.webp"
+      href="/images/thiago-hero-640.webp"
       type="image/webp"
       media="(max-width: 899px)"
       fetchpriority="high"
@@ -93,31 +93,42 @@ const GA_MEASUREMENT_ID = 'G-P8DWQEWLPE';
       media="(min-width: 900px)"
       fetchpriority="high"
     />
-    <!-- Google Tag Manager: boot after window load to protect LCP -->
     <script is:inline define:vars={{ GTM_ID, GA_MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
       window.gtag = function gtag() {
         window.dataLayer.push(arguments);
       };
-      window.addEventListener('load', () => {
-        (function (w, d, s, l, i) {
-          w[l] = w[l] || [];
-          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-          var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != 'dataLayer' ? '&l=' + l : '';
-          j.async = true;
-          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-          f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', GTM_ID);
 
-        var ga = document.createElement('script');
-        ga.async = true;
-        ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
-        document.head.appendChild(ga);
-        window.gtag('js', new Date());
-        window.gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
-      });
+      window.__loadSiteAnalytics = function loadSiteAnalytics() {
+        if (window.__analyticsLoaded) return;
+        window.__analyticsLoaded = true;
+
+        const boot = () => {
+          (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s),
+              dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+          })(window, document, 'script', 'dataLayer', GTM_ID);
+
+          var ga = document.createElement('script');
+          ga.async = true;
+          ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+          document.head.appendChild(ga);
+          window.gtag('js', new Date());
+          window.gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+        };
+
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => boot(), { timeout: 4000 });
+        } else {
+          window.setTimeout(boot, 1800);
+        }
+      };
     </script>
     <script is:inline>
       (() => {
@@ -132,20 +143,12 @@ const GA_MEASUREMENT_ID = 'G-P8DWQEWLPE';
     </script>
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe
-        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"
-        title="Google Tag Manager"
-      ></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <a class="skip-link" href="#conteudo">{content.skipLink}</a>
     <slot />
+    <CookieBanner content={content} />
     <script>
+      const CONSENT_KEY = 'cookie-consent';
+
       const reveals = document.querySelectorAll('.reveal');
       if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver(
@@ -164,7 +167,45 @@ const GA_MEASUREMENT_ID = 'G-P8DWQEWLPE';
         reveals.forEach((el) => el.classList.add('is-visible'));
       }
 
-      // Analytics: WhatsApp CTAs + outbound project clicks → dataLayer / gtag
+      const banner = document.getElementById('cookie-banner');
+      const getConsent = () => {
+        try {
+          return localStorage.getItem(CONSENT_KEY);
+        } catch {
+          return null;
+        }
+      };
+      const setConsent = (value) => {
+        try {
+          localStorage.setItem(CONSENT_KEY, value);
+        } catch {
+          /* ignore */
+        }
+      };
+
+      const applyConsent = (value) => {
+        if (value === 'accepted' && typeof window.__loadSiteAnalytics === 'function') {
+          window.__loadSiteAnalytics();
+        }
+        if (banner) banner.hidden = true;
+      };
+
+      const existing = getConsent();
+      if (existing === 'accepted' || existing === 'rejected') {
+        applyConsent(existing);
+      } else if (banner) {
+        banner.hidden = false;
+      }
+
+      banner?.querySelectorAll('[data-cookie-choice]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const choice = btn.getAttribute('data-cookie-choice');
+          if (choice !== 'accepted' && choice !== 'rejected') return;
+          setConsent(choice);
+          applyConsent(choice);
+        });
+      });
+
       const pushEvent = (name, params) => {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: name, ...params });

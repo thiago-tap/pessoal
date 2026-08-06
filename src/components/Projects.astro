@@ -31,7 +31,10 @@ const rest = content.projectItems.filter((p) => p !== featured);
               class={`project-logo project-logo--${featured.logoVariant}`}
               src={featured.image}
               alt={`Logo ${featured.name}`}
+              width={featured.logoVariant === 'wide' ? 320 : 160}
+              height={featured.logoVariant === 'wide' ? 96 : 160}
               loading="lazy"
+              decoding="async"
             />
           </div>
           <div class="project-body">
@@ -63,7 +66,10 @@ const rest = content.projectItems.filter((p) => p !== featured);
                 class={`project-logo project-logo--${project.logoVariant}`}
                 src={project.image}
                 alt={`Logo ${project.name}`}
+                width={project.logoVariant === 'wide' ? 240 : 120}
+                height={project.logoVariant === 'wide' ? 72 : 120}
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="project-body">

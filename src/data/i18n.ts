@@ -72,6 +72,11 @@ type ContentBundle = {
     footerNavAria: string;
     whatsappMessage: string;
   };
+  cookie: {
+    message: string;
+    accept: string;
+    reject: string;
+  };
   ui: {
     yearsOld: string;
   };
@@ -175,7 +180,7 @@ const pt: ContentBundle = {
         year: '2025',
         title: 'Pós-graduações',
         detail:
-          'Aprofundamento em desenvolvimento web, segurança, redes, dados e administração de banco de dados.',
+          'Web, segurança da informação, redes, ciência de dados/Big Data, DBA, qualidade de software, cloud e BI — reforço paralelo à prática em sistemas críticos.',
       },
     ],
   },
@@ -206,8 +211,8 @@ const pt: ContentBundle = {
   },
   stack: {
     label: 'Stack',
-    title: 'Ferramentas e competências',
-    lead: 'Do backend crítico ao DevOps, produto próprio e estudos — o mapa completo do que uso e domino.',
+    title: 'Ferramentas que uso de verdade',
+    lead: 'Curada — o núcleo do trabalho crítico e do produto próprio, sem inventário infinito.',
     groups: [
       {
         title: 'Backend & APIs',
@@ -217,17 +222,17 @@ const pt: ContentBundle = {
       {
         title: 'Frontend',
         key: 'frontend',
-        blurb: 'Angular, React e Vue no dia a dia — além do ecossistema web que já carreguei.',
+        blurb: 'Angular, React e Vue no dia a dia — interfaces claras sob pressão.',
       },
       {
         title: 'Dados',
         key: 'data',
-        blurb: 'Modelagem, SQL e armazenamento — do corporativo ao objeto.',
+        blurb: 'SQL e armazenamento do corporativo ao objeto.',
       },
       {
         title: 'DevOps & Cloud',
         key: 'devops',
-        blurb: 'Containers, proxy, CI/CD e nuvem com mindset de operação.',
+        blurb: 'Containers, proxy, CI/CD e operação com pé no chão.',
       },
       {
         title: 'Qualidade & DevSecOps',
@@ -237,24 +242,15 @@ const pt: ContentBundle = {
       {
         title: 'Produto & automação',
         key: 'product',
-        blurb: 'Sites estáticos, CMS e automações que tiram trabalho repetitivo do caminho.',
-      },
-      {
-        title: 'Mobile & legado',
-        key: 'mobile',
-        blurb: 'Apps e stacks que já passaram pela mão — ainda no repertório.',
-      },
-      {
-        title: 'Dados, IA & redes',
-        key: 'advanced',
-        blurb: 'Pós e estudos em dados, cloud, redes, BI e inteligência artificial.',
-      },
-      {
-        title: 'Negócios digitais',
-        key: 'business',
-        blurb: 'Presença local e conversão — útil quando o produto também é marca.',
+        blurb: 'Sites estáticos, CMS e automações que tiram trabalho repetitivo.',
       },
     ],
+  },
+  cookie: {
+    message:
+      'Usamos cookies de analytics (Google Analytics / Tag Manager) para entender o uso do site. Você pode aceitar ou continuar só com o essencial.',
+    accept: 'Aceitar',
+    reject: 'Só essencial',
   },
   contact: {
     label: 'Contato',
@@ -369,7 +365,7 @@ const en: ContentBundle = {
         year: '2025',
         title: 'Graduate studies',
         detail:
-          'Deepening web development, security, networks, data, and database administration.',
+          'Web, information security, networks, data science/Big Data, DBA, software quality, cloud, and BI — deepening practice on critical systems.',
       },
     ],
   },
@@ -400,8 +396,8 @@ const en: ContentBundle = {
   },
   stack: {
     label: 'Stack',
-    title: 'Tools and competencies',
-    lead: 'From critical backends to DevOps, own products, and study — the full map of what I use and know.',
+    title: 'Tools I actually use',
+    lead: 'Curated — the core of critical work and own products, not an infinite inventory.',
     groups: [
       {
         title: 'Backend & APIs',
@@ -411,17 +407,17 @@ const en: ContentBundle = {
       {
         title: 'Frontend',
         key: 'frontend',
-        blurb: 'Angular, React, and Vue day to day — plus the wider web stack I have carried.',
+        blurb: 'Angular, React, and Vue day to day — clear interfaces under pressure.',
       },
       {
         title: 'Data',
         key: 'data',
-        blurb: 'Modeling, SQL, and storage — from corporate systems to object stores.',
+        blurb: 'SQL and storage from corporate systems to object stores.',
       },
       {
         title: 'DevOps & Cloud',
         key: 'devops',
-        blurb: 'Containers, proxies, CI/CD, and cloud with an operations mindset.',
+        blurb: 'Containers, proxies, CI/CD, and grounded operations.',
       },
       {
         title: 'Quality & DevSecOps',
@@ -433,22 +429,13 @@ const en: ContentBundle = {
         key: 'product',
         blurb: 'Static sites, CMS, and automations that remove repetitive work.',
       },
-      {
-        title: 'Mobile & legacy',
-        key: 'mobile',
-        blurb: 'Apps and stacks I have shipped or maintained — still in the repertoire.',
-      },
-      {
-        title: 'Data, AI & networks',
-        key: 'advanced',
-        blurb: 'Graduate work and study in data, cloud, networks, BI, and AI.',
-      },
-      {
-        title: 'Digital business',
-        key: 'business',
-        blurb: 'Local presence and conversion — useful when the product is also a brand.',
-      },
     ],
+  },
+  cookie: {
+    message:
+      'We use analytics cookies (Google Analytics / Tag Manager) to understand site usage. You can accept or continue with essentials only.',
+    accept: 'Accept',
+    reject: 'Essentials only',
   },
   contact: {
     label: 'Contact',

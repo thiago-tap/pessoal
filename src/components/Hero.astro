@@ -29,18 +29,18 @@ const whatsappIcon =
       <source
         type="image/webp"
         srcset={content.photos.heroMobileSrcset.webp}
-        sizes="100vw"
+        sizes="(max-width: 899px) 640px, 100vw"
       />
       <source
         type="image/jpeg"
         srcset={content.photos.heroMobileSrcset.jpeg}
-        sizes="100vw"
+        sizes="(max-width: 899px) 640px, 100vw"
       />
       <img
-        src={content.photos.hero}
+        src="/images/thiago-hero-640.jpg"
         alt={content.about.photoAlt}
-        width="1200"
-        height="1500"
+        width="640"
+        height="800"
         fetchpriority="high"
         decoding="async"
       />
@@ -223,6 +223,11 @@ const whatsappIcon =
     opacity: 0;
     transform: translateY(24px);
     animation: rise 1s var(--ease) forwards;
+  }
+
+  /* Keep LCP media fully visible — never opacity-animate the photo */
+  .hero-media {
+    opacity: 1;
   }
 
   .hero-animate:nth-child(1) {
